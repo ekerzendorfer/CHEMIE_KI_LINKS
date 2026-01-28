@@ -31,7 +31,9 @@
     .top-actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
     .btn{border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--text); padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:650; display:inline-flex; gap:10px; align-items:center;}
     .btn:hover{background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.2)}
-    .btn.primary{background:linear-gradient(135deg, rgba(125,211,252,.20), rgba(167,243,208,.14)); border-color:rgba(125,211,252,.28);}
+    .btn.primary{background:linear-gradient(135deg, rgba(125,211,252,.20), rgba(167,243,208,.14)); border-color:rgba(125,211,252,.28);} 
+    .btn.tools{background:linear-gradient(135deg, rgba(251,191,36,.22), rgba(125,211,252,.10)); border-color:rgba(251,191,36,.38);} 
+    .btn.tools:hover{background:linear-gradient(135deg, rgba(251,191,36,.28), rgba(125,211,252,.14)); border-color:rgba(251,191,36,.55);}
     .panel{border:1px solid var(--line); background:rgba(255,255,255,.05); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow);}
     .controls{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:10px; align-items:end;}
     @media (max-width:960px){.controls{grid-template-columns:1fr 1fr}}
@@ -90,6 +92,7 @@
       </div>
       <div class="top-actions">
         <button class="btn primary" id="btnAddHint">➕ <span>Erweitern</span> <small>(links.json)</small></button>
+        <button class="btn tools" id="btnTools" title="Zeigt nur deine K_CH_TOOLS">⚡ <span>K_CH_TOOLS</span></button>
         <button class="btn" id="btnDebug">🛠️ <span>Debug</span></button>
         <button class="btn" id="btnReset">♻️ <span>Reset</span></button>
       </div>
@@ -372,7 +375,7 @@
   });
 
   (async function init(){
-    $("ver").textContent = "v0.3";
+    $("ver").textContent = "v0.4";
     try{
       DATA = await loadData();
       $("badgeSource").textContent = `Daten: ${DATA_URL}`;
@@ -388,7 +391,34 @@
       setBanner(`Konnte ${DATA_URL} nicht laden:\n${err.message}\n\nTest: Öffne ${location.origin}${location.pathname.replace(/\/[^\/]*$/, "/")}data/links.json`);
     }
 
-    $("btnReset").addEventListener("click", ()=>{
+    
+    $("btnTools").addEventListener("click", ()=>{
+      // Set filter to K_CH_TOOLS category and reset other filters
+      state.q = "";
+      state.cat = "K_CH_TOOLS";
+      state.level = "all";
+      state.lang = "all";
+      state.chip = "all";
+      state.onlyFavs = false;
+      state.onlyPadlets = false;
+
+      $("q").value = "";
+      $("onlyFavs").checked = false;
+      $("onlyPadlets").checked = false;
+
+      $("cat").value = "K_CH_TOOLS";
+      $("level").value = "all";
+      $("lang").value = "all";
+
+      // reset chips UI
+      [...$("chips").querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
+      const first = $("chips").querySelector(".chip"); if(first) first.classList.add("active");
+
+      render();
+    });
+
+
+  $("btnReset").addEventListener("click", ()=>{
       state.q=""; state.cat="all"; state.level="all"; state.lang="all"; state.chip="all";
       state.onlyFavs=false; state.onlyPadlets=false;
       $("q").value=""; $("cat").value="all"; $("level").value="all"; $("lang").value="all";
