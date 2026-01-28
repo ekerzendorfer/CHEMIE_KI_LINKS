@@ -92,7 +92,7 @@
       </div>
       <div class="top-actions">
         <button class="btn primary" id="btnAddHint">➕ <span>Erweitern</span> <small>(links.json)</small></button>
-        <button class="btn tools" id="btnTools" title="Zeigt nur deine CHEMIETOOLS">⚡ <span>CHEMIETOOLS</span></button>
+        <button class="btn tools" id="btnTools" title="Zeigt nur deine K_CH_TOOLS">⚡ <span>K_CH_TOOLS</span></button>
         <button class="btn" id="btnDebug">🛠️ <span>Debug</span></button>
         <button class="btn" id="btnReset">♻️ <span>Reset</span></button>
       </div>
@@ -393,9 +393,9 @@
 
     
     $("btnTools").addEventListener("click", ()=>{
-      // Set filter to CHEMIETOOLS category and reset other filters
+      // Set filter to K_CH_TOOLS category and reset other filters
       state.q = "";
-      state.cat = "CHEMIETOOLS";
+      state.cat = "K_CH_TOOLS";
       state.level = "all";
       state.lang = "all";
       state.chip = "all";
@@ -406,7 +406,7 @@
       $("onlyFavs").checked = false;
       $("onlyPadlets").checked = false;
 
-      $("cat").value = "CHEMIETOOLS";
+      $("cat").value = "K_CH_TOOLS";
       $("level").value = "all";
       $("lang").value = "all";
 
