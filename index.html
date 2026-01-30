@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CHEMIE mit KI – Linkhub</title>
-  <meta name="description" content="Kachelübersicht zu KI-Ressourcen (Padlets, Tools, Quellen) für MINT / Chemieunterricht." />
+  <meta name="description" content="Linkhub: Tools/Werkzeuge (Kacheln) + Links/Quellen (Tabelle) für CHEMIE mit KI." />
   <style>
     :root{
       --bg:#0b1220; --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.68);
@@ -23,35 +23,78 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:26px 16px 60px;}
-    header{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; justify-content:space-between; margin-bottom:18px;}
+    header{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; justify-content:space-between; margin-bottom:14px;}
     .brand{display:flex; flex-direction:column; gap:6px;}
     .title{font-size:clamp(22px,3.1vw,34px); letter-spacing:.2px; font-weight:760; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
     .badge{font-size:12px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.05); color:var(--muted);}
     .subtitle{color:var(--muted); max-width:78ch; font-size:14px;}
+
     .top-actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
-    .btn{border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--text); padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:650; display:inline-flex; gap:10px; align-items:center;}
+    .btn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:750;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      user-select:none;
+      transition: background .15s ease, border-color .15s ease, transform .08s ease;
+    }
     .btn:hover{background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.2)}
-    .btn.primary{background:linear-gradient(135deg, rgba(125,211,252,.20), rgba(167,243,208,.14)); border-color:rgba(125,211,252,.28);} 
-    .btn.tools{background:linear-gradient(135deg, rgba(251,191,36,.22), rgba(125,211,252,.10)); border-color:rgba(251,191,36,.38);} 
-    .btn.tools:hover{background:linear-gradient(135deg, rgba(251,191,36,.28), rgba(125,211,252,.14)); border-color:rgba(251,191,36,.55);}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(251,191,36,.22), rgba(125,211,252,.10));
+      border-color:rgba(251,191,36,.40);
+    }
+    .btn.secondary{
+      background:linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,243,208,.10));
+      border-color:rgba(125,211,252,.28);
+    }
+    .btn.ghost{background:rgba(255,255,255,.06)}
+    .btn.active{border-color: rgba(255,255,255,.34); background: rgba(255,255,255,.12);}
+
     .panel{border:1px solid var(--line); background:rgba(255,255,255,.05); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow);}
-    .controls{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:10px; align-items:end;}
-    @media (max-width:960px){.controls{grid-template-columns:1fr 1fr}}
-    @media (max-width:560px){.controls{grid-template-columns:1fr}}
     label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px 2px;}
-    input[type="search"], select{width:100%; padding:11px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.25); color:var(--text); outline:none;}
+    input[type="search"], select{
+      width:100%;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
+    }
     input[type="search"]::placeholder{color:rgba(255,255,255,.45)}
+    .banner{
+      margin-top:10px; border:1px dashed rgba(251,191,36,.35); background:rgba(251,191,36,.08);
+      padding:10px 12px; border-radius:14px; color:rgba(255,255,255,.85); display:none; white-space:pre-wrap;
+    }
+    .meta-row{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+      margin-top:12px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px;
+    }
+    .pill{display:inline-block; font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); color:rgba(255,255,255,.82);}
+
+    /* ----- TOOLS view (cards) ----- */
+    .controls-tools{display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap:10px; align-items:end;}
+    @media (max-width:960px){ .controls-tools{grid-template-columns:1fr 1fr} }
+    @media (max-width:560px){ .controls-tools{grid-template-columns:1fr} }
+
     .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; align-items:center;}
     .chip{border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); color:var(--muted); padding:7px 10px; border-radius:999px; cursor:pointer; font-size:12px; font-weight:650;}
     .chip:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22)}
     .chip.active{background:rgba(125,211,252,.14); border-color:rgba(125,211,252,.32); color:rgba(255,255,255,.92);}
-    .meta-row{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:12px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px;}
+
     .grid{margin-top:16px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
     @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:620px){.grid{grid-template-columns:1fr}}
     .card{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04)); box-shadow:var(--shadow); min-height:220px; display:flex; flex-direction:column;}
-    .thumb{height:130px; background:rgba(255,255,255,.05); position:relative; overflow:hidden;}
-    .thumb img{width:100%; height:100%; object-fit:contain; background: rgba(0,0,0,.25);}
+    .thumb{height:140px; background:rgba(255,255,255,.05); position:relative; overflow:hidden;}
+    .thumb img{width:100%; height:100%; object-fit:contain; background:rgba(0,0,0,.20); display:block;}
     .thumb .fallback{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); font-weight:750; letter-spacing:.5px;
       background: radial-gradient(600px 250px at 10% 10%, rgba(125,211,252,.18), transparent 60%),
                   radial-gradient(500px 250px at 90% 0%, rgba(167,243,208,.14), transparent 60%),
@@ -63,16 +106,23 @@
     .desc{color:var(--muted); font-size:13px; margin:0;}
     .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:6px;}
     .tag{font-size:11px; color:rgba(255,255,255,.74); border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); padding:4px 8px; border-radius:999px;}
-    .tag.key{border-color:rgba(125,211,252,.30); background:rgba(125,211,252,.10)}
-    .tag.warn{border-color:rgba(251,191,36,.32); background:rgba(251,191,36,.10)}
     .card-actions{display:flex; gap:8px; padding:10px 12px 12px; border-top:1px solid var(--line); align-items:center; justify-content:space-between;}
     .link{display:inline-flex; gap:10px; align-items:center; text-decoration:none; font-weight:750; font-size:13px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); flex:1; justify-content:center;}
     .link:hover{background:rgba(255,255,255,.085); border-color:rgba(255,255,255,.22)}
     .icon{width:16px; height:16px; display:inline-block;}
-    .star{width:42px; flex:0 0 auto; display:inline-flex; justify-content:center;}
-    .star[aria-pressed="true"]{border-color:rgba(251,191,36,.40); background:rgba(251,191,36,.10)}
-    footer{margin-top:26px; color:var(--muted2); font-size:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;}
-    .banner{margin-top:10px; border:1px dashed rgba(251,191,36,.35); background:rgba(251,191,36,.08); padding:10px 12px; border-radius:14px; color:rgba(255,255,255,.85); display:none; white-space:pre-wrap;}
+
+    /* ----- LINKS view (table) ----- */
+    .controls-links{display:grid; grid-template-columns: 2fr 1fr; gap:10px; align-items:end;}
+    @media (max-width:720px){.controls-links{grid-template-columns:1fr}}
+
+    .table-wrap{margin-top:16px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:rgba(255,255,255,.04); box-shadow:var(--shadow);}
+    table{width:100%; border-collapse:collapse;}
+    thead th{text-align:left; font-size:12px; color:rgba(255,255,255,.78); padding:12px; background:rgba(0,0,0,.25); border-bottom:1px solid var(--line); position:sticky; top:0;}
+    tbody td{padding:12px; border-bottom:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.86); font-size:13px; vertical-align:top;}
+    tbody tr:hover td{background:rgba(255,255,255,.03)}
+    .urlcell a{word-break:break-word; color:rgba(167,243,208,.92);}
+
+    footer{margin-top:20px; color:var(--muted2); font-size:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;}
     .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       border:1px solid rgba(255,255,255,.16); border-bottom-color:rgba(255,255,255,.24); background:rgba(0,0,0,.25);
       padding:2px 6px; border-radius:8px; color:rgba(255,255,255,.84); font-size:11px;}
@@ -85,64 +135,98 @@
         <div class="title">
           CHEMIE mit KI – Linkhub
           <span class="badge" id="badgeCount">…</span>
-          <span class="badge" id="badgeFavs">★ …</span>
           <span class="badge" id="badgeSource">Daten: …</span>
         </div>
-        <div class="subtitle">Kachelübersicht für Kolleg:innen & Schüler:innen: Padlets, Tools, Quellen – filterbar nach <b>Level</b>, <b>Typ</b> und <b>Sprache</b>.</div>
+        <div class="subtitle">Zwei Ansichten: <b>TOOLS und WERKZEUGE</b> (Kacheln) & <b>LINKS und QUELLEN</b> (Tabelle).</div>
       </div>
+
       <div class="top-actions">
-        <button class="btn primary" id="btnAddHint">➕ <span>Erweitern</span> <small>(links.json)</small></button>
-        <button class="btn tools" id="btnTools" title="Zeigt nur deine K_CH_TOOLS">⚡ <span>K_CH_TOOLS</span></button>
-        <button class="btn" id="btnDebug">🛠️ <span>Debug</span></button>
-        <button class="btn" id="btnReset">♻️ <span>Reset</span></button>
+        <!-- Reihenfolge wie gewünscht -->
+        <button class="btn primary active" id="btnModeTools">⚡ <span>TOOLS und WERKZEUGE</span></button>
+        <button class="btn secondary" id="btnModeLinks">📚 <span>LINKS und QUELLEN</span></button>
+        <button class="btn ghost" id="btnReset">♻️ <span>RESET</span></button>
+        <button class="btn ghost" id="btnDebug">🛠️ <span>Debug</span></button>
+        <button class="btn ghost" id="btnAddHint">➕ <span>Erweitern</span> <small>(.json)</small></button>
       </div>
     </header>
 
     <div class="banner" id="banner"></div>
 
-    <section class="panel" aria-label="Filter">
-      <div class="controls">
+    <!-- FILTER: TOOLS -->
+    <section class="panel" id="panelTools" aria-label="Tools-Filter">
+      <div class="controls-tools">
         <div>
-          <label for="q">Suche</label>
-          <input id="q" type="search" placeholder="z.B. Padlet, MINT, Chemie, assessment, prompt, PH Wien …" autocomplete="off" />
+          <label for="qTools">Suche</label>
+          <input id="qTools" type="search" placeholder="z.B. MOL_LAB, Titration, PSE, Protein …" autocomplete="off" />
         </div>
-        <div><label for="cat">Kategorie</label><select id="cat"></select></div>
-        <div><label for="level">Level</label><select id="level"></select></div>
-        <div><label for="lang">Sprache</label><select id="lang"></select></div>
+        <div><label for="catTools">Kategorie</label><select id="catTools"></select></div>
+        <div><label for="levelTools">Level</label><select id="levelTools"></select></div>
+        <div><label for="langTools">Sprache</label><select id="langTools"></select></div>
       </div>
-      <div class="chips" id="chips" aria-label="Tag-Filter"></div>
+
+      <div class="chips" id="chipsTools" aria-label="Tag-Filter"></div>
 
       <div class="meta-row">
-        <div><span id="resultInfo">–</span></div>
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end">
-          <label style="margin:0; display:flex; gap:8px; align-items:center; cursor:pointer;">
-            <input type="checkbox" id="onlyFavs" /> <span>nur Favoriten</span>
-          </label>
-          <label style="margin:0; display:flex; gap:8px; align-items:center; cursor:pointer;">
-            <input type="checkbox" id="onlyPadlets" /> <span>nur Padlets</span>
-          </label>
-        </div>
+        <div><span id="resultInfoTools">–</span></div>
+        <div><span class="pill">TOOLS</span></div>
       </div>
     </section>
 
-    <main class="grid" id="grid" aria-label="Kacheln"></main>
+    <!-- FILTER: LINKS (bewusst einfach) -->
+    <section class="panel" id="panelLinks" style="display:none" aria-label="Links-Filter">
+      <div class="controls-links">
+        <div>
+          <label for="qLinks">Suche</label>
+          <input id="qLinks" type="search" placeholder="z.B. Padlet, assessment, guideline …" autocomplete="off" />
+        </div>
+        <div>
+          <label for="typeLinks">Typ</label>
+          <select id="typeLinks"></select>
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <div><span id="resultInfoLinks">–</span></div>
+        <div><span class="pill">LINKS</span></div>
+      </div>
+    </section>
+
+    <!-- TOOLS VIEW -->
+    <main class="grid" id="gridTools" aria-label="Tools-Kacheln"></main>
+
+    <!-- LINKS VIEW -->
+    <section class="table-wrap" id="tableLinksWrap" style="display:none" aria-label="Links-Tabelle">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40%">title</th>
+            <th style="width:18%">type</th>
+            <th>url</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyLinks"></tbody>
+      </table>
+    </section>
 
     <footer>
-      <div>© deine Sammlung – statische HTML-Seite (GitHub Pages).</div>
-      <div>Version: <span class="kbd" id="ver">v0.3</span></div>
+      <div>Erstellt von <b>Mag. Erich Kerzendorfer</b> mit Hilfe von <b>ChatGPT</b></div>
+      <div>Version: <span class="kbd" id="ver">v1.1</span> · <span class="kbd">2026-01-30</span></div>
     </footer>
   </div>
 
 <script>
-  const DATA_URL = "data/links.json";
-  let DATA = [];
+  // Datenquellen (zwei JSONs, wie besprochen):
+  const URL_TOOLS = "data/tools.json";
+  const URL_LINKS = "data/links_list.json";
 
-  const state = { q:"", cat:"all", level:"all", lang:"all", chip:"all", onlyFavs:false, onlyPadlets:false };
-  const LS_KEY = "chemie-ki-linkhub-favs";
-  const favs = new Set(JSON.parse(localStorage.getItem(LS_KEY) || "[]"));
+  let TOOLS = [];
+  let LINKS = [];
+
+  const stateTools = { q:"", cat:"all", level:"all", lang:"all", chip:"all" };
+  const stateLinks = { q:"", type:"all" };
+  let mode = "tools"; // "tools" | "links"
 
   const $ = (id) => document.getElementById(id);
-  const uniq = (arr) => [...new Set(arr)].sort((a,b)=>a.localeCompare(b,'de'));
 
   function setBanner(msg){
     const b = $("banner");
@@ -151,72 +235,36 @@
     b.textContent = msg;
   }
 
-  // safer normalize: no Unicode property escapes (older browsers sometimes fail)
   function normalize(s){
-    return (s||"")
-      .toString()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+    return (s||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
-  function matchesQuery(item, q){
-    if(!q) return true;
-    const hay = [
-      item.title, item.org, item.type, item.category, item.level, item.lang, item.desc,
-      ...(item.tags||[])
-    ].join(" • ");
-    return normalize(hay).includes(normalize(q));
+  function escapeHtml(str){
+    return (str ?? "").toString()
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
   }
+  function escapeAttr(str){ return escapeHtml(str); }
 
-  function getAllTags(data){
-    const tags = [];
-    data.forEach(d => (d.tags||[]).forEach(t => tags.push(t)));
-    return uniq(tags);
-  }
+  function uniq(arr){ return [...new Set(arr)].sort((a,b)=>a.localeCompare(b,'de')); }
 
-  function iconSvg(kind){
-    const map = {
-      "link": `<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>`,
-      "star": `<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 17.3l-5.4 3 1-6.1L3 9.7l6.2-.9L12 3l2.8 5.8 6.2.9-4.6 4.5 1 6.1-5.4-3z"
-          stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-      </svg>`
-    };
-    return map[kind] || "";
-  }
-
-  function saveFavs(){
-    localStorage.setItem(LS_KEY, JSON.stringify([...favs]));
-    updateBadges();
-  }
-
-  function updateBadges(){
-    $("badgeCount").textContent = `${DATA.length} Ressourcen`;
-    $("badgeFavs").textContent = `★ ${favs.size}`;
-  }
-
-  function buildSelect(selectEl, values, labelAll){
-    selectEl.innerHTML = "";
-    const optAll = document.createElement("option");
-    optAll.value = "all";
-    optAll.textContent = labelAll;
-    selectEl.appendChild(optAll);
+  function buildSelect(sel, values, labelAll){
+    sel.innerHTML = "";
+    const oAll = document.createElement("option");
+    oAll.value = "all";
+    oAll.textContent = labelAll;
+    sel.appendChild(oAll);
     values.forEach(v=>{
       const o = document.createElement("option");
       o.value = v;
       o.textContent = v;
-      selectEl.appendChild(o);
+      sel.appendChild(o);
     });
   }
 
   function buildChips(tags){
-    const chips = $("chips");
+    const chips = $("chipsTools");
     chips.innerHTML = "";
-
     const make = (text, value) => {
       const c = document.createElement("button");
       c.className = "chip";
@@ -224,149 +272,243 @@
       c.textContent = text;
       c.dataset.value = value;
       c.addEventListener("click", ()=>{
-        state.chip = value;
+        stateTools.chip = value;
         [...chips.querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
         c.classList.add("active");
-        render();
+        renderTools();
       });
       return c;
     };
-
     const all = make("Alle Tags", "all");
     all.classList.add("active");
     chips.appendChild(all);
     tags.forEach(t=> chips.appendChild(make(t, t)));
   }
 
-  function escapeHtml(str){
-    return (str ?? "").toString()
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
+  function matchesQueryTools(item, q){
+    if(!q) return true;
+    const hay = [item.title, item.org, item.type, item.category, item.level, item.lang, item.desc, ...(item.tags||[])].join(" • ");
+    return normalize(hay).includes(normalize(q));
   }
-  function escapeAttr(str){ return escapeHtml(str); }
+
+  function filterTools(){
+    return TOOLS.filter(item=>{
+      if(stateTools.cat !== "all" && item.category !== stateTools.cat) return false;
+      if(stateTools.level !== "all" && item.level !== stateTools.level) return false;
+      if(stateTools.lang !== "all" && item.lang !== stateTools.lang) return false;
+      if(stateTools.chip !== "all" && !(item.tags||[]).includes(stateTools.chip)) return false;
+      if(!matchesQueryTools(item, stateTools.q)) return false;
+      return true;
+    });
+  }
+
+  function iconSvg(){
+    return `<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>`;
+  }
 
   function cardTemplate(item){
     const hasThumb = !!item.thumb;
-    const isFav = favs.has(item.id);
-
-    const tagEls = (item.tags||[]).slice(0,6).map(t=>{
-      const cls = ["MINT","STEM","Chemie","Chemistry"].some(k => normalize(t).includes(normalize(k))) ? "tag key" :
-                  ["Assessment","Prüfung","Responsible Use","Policies/Ethics"].some(k => normalize(t).includes(normalize(k))) ? "tag warn" : "tag";
-      return `<span class="${cls}">${escapeHtml(t)}</span>`;
-    }).join("");
+    const badge = item.type || "Tool";
+    const tags = (item.tags||[]).slice(0,8).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
+    const org = item.org ? `<div class="org">${escapeHtml(item.org)}</div>` : "";
+    const desc = item.desc ? `<p class="desc">${escapeHtml(item.desc)}</p>` : "";
+    const repoLink = item.repo ? `<a class="link" href="${escapeAttr(item.repo)}" target="_blank" rel="noopener">${iconSvg()} Repo</a>` : "";
 
     return `
-      <article class="card" data-id="${escapeHtml(item.id)}">
+      <article class="card">
         <div class="thumb">
           ${hasThumb ? `<img src="${escapeAttr(item.thumb)}" alt="Vorschaubild: ${escapeAttr(item.title)}" loading="lazy">`
-                     : `<div class="fallback">${escapeHtml(item.type || "Ressource")}</div>`}
+                      : `<div class="fallback">${escapeHtml(badge)}</div>`}
         </div>
         <div class="card-body">
           <div class="row1">
             <div>
               <h3 class="h">${escapeHtml(item.title || "—")}</h3>
-              <div class="org">${escapeHtml(item.org || "")}</div>
+              ${org}
             </div>
-            <span class="badge">${escapeHtml(item.type || "—")}</span>
+            <span class="badge">${escapeHtml(badge)}</span>
           </div>
-          <p class="desc">${escapeHtml(item.desc || "")}</p>
-          <div class="tags">
-            <span class="tag">${escapeHtml(item.category || "—")}</span>
-            <span class="tag">${escapeHtml(item.level || "—")}</span>
-            <span class="tag">${escapeHtml(item.lang || "—")}</span>
-            ${tagEls}
-          </div>
+          ${desc}
+          <div class="tags">${tags}</div>
         </div>
         <div class="card-actions">
-          <a class="link" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">${iconSvg("link")} Öffnen</a>
-          <button class="btn star" type="button" aria-pressed="${isFav}" title="Favorit">${iconSvg("star")}</button>
+          <a class="link" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">${iconSvg()} Öffnen</a>
+          ${repoLink}
         </div>
       </article>
     `;
   }
 
-  function applyFilters(){
-    return DATA.filter(item=>{
-      if(state.onlyPadlets && normalize(item.type) !== "padlet") return false;
-      if(state.onlyFavs && !favs.has(item.id)) return false;
-      if(state.cat !== "all" && item.category !== state.cat) return false;
-      if(state.level !== "all" && item.level !== state.level) return false;
-      if(state.lang !== "all" && item.lang !== state.lang) return false;
-      if(state.chip !== "all" && !(item.tags||[]).includes(state.chip)) return false;
-      if(!matchesQuery(item, state.q)) return false;
+  function renderTools(){
+    const filtered = filterTools();
+    $("gridTools").innerHTML = filtered.map(cardTemplate).join("");
+    $("resultInfoTools").textContent = `${filtered.length} Treffer`;
+    $("badgeCount").textContent = `${TOOLS.length} Tools`;
+    if(TOOLS.length === 0) setBanner("TOOLS: 0 Einträge geladen. Prüfe data/tools.json");
+    else if(filtered.length === 0) setBanner("Keine Treffer (TOOLS). Filter zurücksetzen oder Suchbegriff ändern.");
+    else setBanner("");
+  }
+
+  // ---- LINKS (Table) ----
+  function matchesQueryLinks(item, q){
+    if(!q) return true;
+    const hay = [item.title, item.type, item.url].join(" • ");
+    return normalize(hay).includes(normalize(q));
+  }
+
+  function filterLinks(){
+    return LINKS.filter(item=>{
+      if(stateLinks.type !== "all" && (item.type||"") !== stateLinks.type) return false;
+      if(!matchesQueryLinks(item, stateLinks.q)) return false;
       return true;
     });
   }
 
-  function render(){
-    const grid = $("grid");
-    const filtered = applyFilters();
-    $("resultInfo").textContent = `${filtered.length} Treffer`;
+  function rowTemplate(item){
+    const title = escapeHtml(item.title || "—");
+    const type = escapeHtml(item.type || "—");
+    const url = escapeAttr(item.url || "#");
+    return `
+      <tr>
+        <td>${title}</td>
+        <td><span class="pill">${type}</span></td>
+        <td class="urlcell"><a href="${url}" target="_blank" rel="noopener">${escapeHtml(item.url || "")}</a></td>
+      </tr>
+    `;
+  }
 
-    grid.innerHTML = filtered.map(cardTemplate).join("");
+  function renderLinks(){
+    const filtered = filterLinks();
+    $("tbodyLinks").innerHTML = filtered.map(rowTemplate).join("");
+    $("resultInfoLinks").textContent = `${filtered.length} Treffer`;
+    $("badgeCount").textContent = `${LINKS.length} Links`;
+    if(LINKS.length === 0) setBanner("LINKS: 0 Einträge geladen. Prüfe data/links_list.json");
+    else if(filtered.length === 0) setBanner("Keine Treffer (LINKS). Filter zurücksetzen oder Suchbegriff ändern.");
+    else setBanner("");
+  }
 
-    grid.querySelectorAll(".card").forEach(card=>{
-      const id = card.dataset.id;
-      const btn = card.querySelector(".star");
-      btn.addEventListener("click", ()=>{
-        if(favs.has(id)) favs.delete(id); else favs.add(id);
-        btn.setAttribute("aria-pressed", favs.has(id));
-        saveFavs();
-        if(state.onlyFavs) render();
-      });
-    });
+  function switchMode(newMode){
+    mode = newMode;
+    $("btnModeTools").classList.toggle("active", mode === "tools");
+    $("btnModeLinks").classList.toggle("active", mode === "links");
 
-    // helpful banner if nothing shows
-    if(DATA.length > 0 && filtered.length === 0){
-      setBanner("Keine Treffer mit den aktuellen Filtern.\n→ Klick 'Reset' oder lösche die Suche.");
-    }else if(DATA.length === 0){
-      setBanner("Es wurden 0 Einträge geladen.\n→ Debug klicken (zeigt Lade-Status / Fehler).");
-    }else{
-      setBanner("");
+    $("panelTools").style.display = mode === "tools" ? "block" : "none";
+    $("gridTools").style.display = mode === "tools" ? "grid" : "none";
+
+    $("panelLinks").style.display = mode === "links" ? "block" : "none";
+    $("tableLinksWrap").style.display = mode === "links" ? "block" : "none";
+
+    // when switching: keep existing search text per mode
+    if(mode === "tools") renderTools(); else renderLinks();
+  }
+
+  function resetAll(){
+    // tools
+    stateTools.q=""; stateTools.cat="all"; stateTools.level="all"; stateTools.lang="all"; stateTools.chip="all";
+    $("qTools").value=""; $("catTools").value="all"; $("levelTools").value="all"; $("langTools").value="all";
+    [...$("chipsTools").querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
+    const first = $("chipsTools").querySelector(".chip"); if(first) first.classList.add("active");
+
+    // links
+    stateLinks.q=""; stateLinks.type="all";
+    $("qLinks").value=""; $("typeLinks").value="all";
+
+    setBanner("");
+    if(mode === "tools") renderTools(); else renderLinks();
+  }
+
+  function showDebug(){
+    const msg =
+`MODE: ${mode}
+TOOLS entries: ${TOOLS.length} (data/tools.json)
+LINKS entries: ${LINKS.length} (data/links_list.json)
+
+Tools filters:
+- q="${stateTools.q}"
+- category="${stateTools.cat}"
+- level="${stateTools.level}"
+- lang="${stateTools.lang}"
+- tag="${stateTools.chip}"
+
+Links filters:
+- q="${stateLinks.q}"
+- type="${stateLinks.type}"
+`;
+    setBanner(msg);
+  }
+
+  function addHint(){
+    if(mode === "tools"){
+      alert(`TOOLS und WERKZEUGE erweitern:
+1) Datei data/tools.json öffnen
+2) Eintrag hinzufügen (thumb optional)
+3) Optional Thumbnail nach assets/thumbs/ hochladen und im Feld "thumb" eintragen`);
+    } else {
+      alert(`LINKS und QUELLEN erweitern:
+1) Datei data/links_list.json öffnen
+2) Eintrag hinzufügen (nur title, type, url – keine Thumbnails nötig)`);
     }
   }
 
-  async function loadData(){
-    $("badgeSource").textContent = "Daten: lade…";
-    const res = await fetch(DATA_URL, { cache: "no-store" });
-    if(!res.ok) throw new Error(`HTTP ${res.status} beim Laden von ${DATA_URL}`);
+  async function fetchJson(url){
+    const res = await fetch(url, { cache:"no-store" });
+    if(!res.ok) throw new Error(`HTTP ${res.status} bei ${url}`);
     const json = await res.json();
-    if(!Array.isArray(json)) throw new Error("links.json muss ein JSON-Array sein (Liste).");
+    if(!Array.isArray(json)) throw new Error(`${url} ist kein JSON-Array (Liste).`);
     return json;
   }
 
-  function initControls(){
-    const cats = uniq(DATA.map(d=>d.category).filter(Boolean));
-    const levels = uniq(DATA.map(d=>d.level).filter(Boolean));
-    const langs = uniq(DATA.map(d=>d.lang).filter(Boolean));
+  async function init(){
+    $("badgeSource").textContent = "Daten: lade…";
+    try{
+      const [t, l] = await Promise.all([fetchJson(URL_TOOLS), fetchJson(URL_LINKS)]);
+      TOOLS = t; LINKS = l;
+      $("badgeSource").textContent = `Daten: ${URL_TOOLS} + ${URL_LINKS}`;
 
-    buildSelect($("cat"), cats, "Alle Kategorien");
-    buildSelect($("level"), levels, "Alle Level");
-    buildSelect($("lang"), langs, "Alle Sprachen");
+      // TOOLS selects
+      buildSelect($("catTools"), uniq(TOOLS.map(d=>d.category).filter(Boolean)), "Alle Kategorien");
+      buildSelect($("levelTools"), uniq(TOOLS.map(d=>d.level).filter(Boolean)), "Alle Level");
+      buildSelect($("langTools"), uniq(TOOLS.map(d=>d.lang).filter(Boolean)), "Alle Sprachen");
+      buildChips(uniq(TOOLS.flatMap(d=>d.tags||[])));
 
-    $("q").addEventListener("input", (e)=>{ state.q = e.target.value.trim(); render(); });
-    $("cat").addEventListener("change", (e)=>{ state.cat = e.target.value; render(); });
-    $("level").addEventListener("change", (e)=>{ state.level = e.target.value; render(); });
-    $("lang").addEventListener("change", (e)=>{ state.lang = e.target.value; render(); });
-    $("onlyFavs").addEventListener("change", (e)=>{ state.onlyFavs = e.target.checked; render(); });
-    $("onlyPadlets").addEventListener("change", (e)=>{ state.onlyPadlets = e.target.checked; render(); });
+      // LINKS select
+      buildSelect($("typeLinks"), uniq(LINKS.map(d=>d.type).filter(Boolean)), "Alle Typen");
 
-    buildChips(getAllTags(DATA));
+      // initial render
+      switchMode("tools");
+    } catch(err) {
+      $("badgeSource").textContent = "Daten: FEHLER";
+      setBanner(`Daten konnten nicht geladen werden:\n${err.message}`);
+      TOOLS=[]; LINKS=[];
+      // still allow UI
+      buildSelect($("catTools"), [], "Alle Kategorien");
+      buildSelect($("levelTools"), [], "Alle Level");
+      buildSelect($("langTools"), [], "Alle Sprachen");
+      buildChips([]);
+      buildSelect($("typeLinks"), [], "Alle Typen");
+      switchMode("tools");
+    }
   }
 
-  function showDebug(extra=""){
-    const lines = [];
-    lines.push(`DATA_URL: ${DATA_URL}`);
-    lines.push(`Loaded entries: ${DATA.length}`);
-    lines.push(`Example entry: ${DATA[0] ? JSON.stringify(DATA[0], null, 2) : "—"}`);
-    if(extra) lines.push("\n" + extra);
-    setBanner(lines.join("\n"));
-  }
+  // Events
+  $("btnModeTools").addEventListener("click", ()=>switchMode("tools"));
+  $("btnModeLinks").addEventListener("click", ()=>switchMode("links"));
+  $("btnReset").addEventListener("click", resetAll);
+  $("btnDebug").addEventListener("click", showDebug);
+  $("btnAddHint").addEventListener("click", addHint);
 
-  // show JS errors inside the page (very useful on Pages)
+  $("qTools").addEventListener("input", (e)=>{ stateTools.q = e.target.value.trim(); renderTools(); });
+  $("catTools").addEventListener("change", (e)=>{ stateTools.cat = e.target.value; renderTools(); });
+  $("levelTools").addEventListener("change", (e)=>{ stateTools.level = e.target.value; renderTools(); });
+  $("langTools").addEventListener("change", (e)=>{ stateTools.lang = e.target.value; renderTools(); });
+
+  $("qLinks").addEventListener("input", (e)=>{ stateLinks.q = e.target.value.trim(); renderLinks(); });
+  $("typeLinks").addEventListener("change", (e)=>{ stateLinks.type = e.target.value; renderLinks(); });
+
+  // show JS errors inline (helpful on Pages)
   window.addEventListener("error", (e)=> {
     setBanner(`JavaScript-Fehler:\n${e.message}\n(${e.filename}:${e.lineno}:${e.colno})`);
   });
@@ -374,68 +516,7 @@
     setBanner(`Promise-Fehler:\n${e.reason?.message || e.reason}`);
   });
 
-  (async function init(){
-    $("ver").textContent = "v0.4";
-    try{
-      DATA = await loadData();
-      $("badgeSource").textContent = `Daten: ${DATA_URL}`;
-      updateBadges();
-      initControls();
-      render();
-    }catch(err){
-      $("badgeSource").textContent = "Daten: FEHLER";
-      DATA = [];
-      updateBadges();
-      initControls();
-      render();
-      setBanner(`Konnte ${DATA_URL} nicht laden:\n${err.message}\n\nTest: Öffne ${location.origin}${location.pathname.replace(/\/[^\/]*$/, "/")}data/links.json`);
-    }
-
-    
-    $("btnTools").addEventListener("click", ()=>{
-      // Set filter to K_CH_TOOLS category and reset other filters
-      state.q = "";
-      state.cat = "K_CH_TOOLS";
-      state.level = "all";
-      state.lang = "all";
-      state.chip = "all";
-      state.onlyFavs = false;
-      state.onlyPadlets = false;
-
-      $("q").value = "";
-      $("onlyFavs").checked = false;
-      $("onlyPadlets").checked = false;
-
-      $("cat").value = "K_CH_TOOLS";
-      $("level").value = "all";
-      $("lang").value = "all";
-
-      // reset chips UI
-      [...$("chips").querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
-      const first = $("chips").querySelector(".chip"); if(first) first.classList.add("active");
-
-      render();
-    });
-
-
-  $("btnReset").addEventListener("click", ()=>{
-      state.q=""; state.cat="all"; state.level="all"; state.lang="all"; state.chip="all";
-      state.onlyFavs=false; state.onlyPadlets=false;
-      $("q").value=""; $("cat").value="all"; $("level").value="all"; $("lang").value="all";
-      $("onlyFavs").checked=false; $("onlyPadlets").checked=false;
-      [...$("chips").querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
-      const first = $("chips").querySelector(".chip"); if(first) first.classList.add("active");
-      render();
-    });
-
-    $("btnAddHint").addEventListener("click", ()=>{
-      alert("Erweitern:\n1) Öffne data/links.json\n2) Neuen Eintrag als JSON-Objekt hinzufügen\n3) Optional thumb: assets/thumbs/<id>.webp");
-    });
-
-    $("btnDebug").addEventListener("click", ()=>{
-      showDebug("Wenn 'Loaded entries' > 0 ist und trotzdem keine Kacheln erscheinen, liegt es an einem JS-Fehler oder Filtern.");
-    });
-  })();
+  init();
 </script>
 </body>
 </html>
