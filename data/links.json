@@ -1,190 +1,5 @@
 [
-  {
-    "id": "eis_fachunterricht",
-    "title": "Künstliche Intelligenz im (Fach-)Unterricht",
-    "org": "PH Wien / EIS",
-    "url": "https://padlet.com/eis/k-nstliche-intelligenz-im-fach-unterricht-nljhe9esamxq3zrv",
-    "type": "Padlet",
-    "category": "AI Overview",
-    "level": "mixed",
-    "lang": "DE",
-    "desc": "Breite Linkliste für KI-Einsatz im Unterricht, fachübergreifend.",
-    "tags": [
-      "Unterricht",
-      "AI-Literacy",
-      "Best Practice"
-    ],
-    "thumb": "assets/thumbs/eis_fachunterricht.webp"
-  },
-  {
-    "id": "eis_mint",
-    "title": "KI im MINT-Unterricht",
-    "org": "PH Wien / EIS",
-    "url": "https://padlet.com/eis/ki-im-mint-unterricht-6gn4yg4wcutmsfb8",
-    "type": "Padlet",
-    "category": "MINT/STEM",
-    "level": "SEK1/SEK2",
-    "lang": "DE",
-    "desc": "MINT-spezifische Ideen, Links, Materialien.",
-    "tags": [
-      "MINT",
-      "Unterricht",
-      "Ressourcen"
-    ],
-    "thumb": "assets/thumbs/eis_mint.webp"
-  },
-  {
-    "id": "eis_hochschule",
-    "title": "KI-gestützte Hochschule",
-    "org": "PH Wien / EIS (K:MID)",
-    "url": "https://padlet.com/eis/ki-gest-tzte-hochschule-wu8oxq5as3nznarw",
-    "type": "Padlet",
-    "category": "AI Overview",
-    "level": "HE",
-    "lang": "DE",
-    "desc": "Ressourcen rund um KI in der Hochschullehre (teilweise übertragbar auf SEK2).",
-    "tags": [
-      "HE",
-      "Policies/Ethics",
-      "Didaktik"
-    ],
-    "thumb": "assets/thumbs/eis_hochschule.webp"
-  },
-  {
-    "id": "eis_writingskills",
-    "title": "KI-gestütztes wissenschaftliches Schreiben",
-    "org": "PH Wien / EIS",
-    "url": "https://padlet.com/eis/ki-gest-tztes-wissenschaftliches-schreiben-n0w3p7us5qm0rcoc",
-    "type": "Padlet",
-    "category": "Writing/Study",
-    "level": "SEK2/HE",
-    "lang": "DE",
-    "desc": "Prompts & Hinweise fürs Schreiben (Chancen, Grenzen, Qualitätskontrolle).",
-    "tags": [
-      "Writing/Study",
-      "Prompting",
-      "Qualitätscheck"
-    ],
-    "thumb": "assets/thumbs/eis_writingskills.webp"
-  },
-  {
-    "id": "vph_kiunterricht",
-    "title": "KI für den Unterricht – Links/Ideen/Ressourcen",
-    "org": "Virtuelle PH (AT) / A. Bankhofer",
-    "url": "https://padlet.com/aliciabankhofer/ki-f-r-den-unterricht-links-ideen-ressourcen-einsatzideen-f--7qczpkgbgpthugn",
-    "type": "Padlet",
-    "category": "AI Overview",
-    "level": "mixed",
-    "lang": "DE",
-    "desc": "Breite, praxisnahe Linkliste mit Einsatzideen.",
-    "tags": [
-      "Unterricht",
-      "Tools",
-      "Ideenpool"
-    ],
-    "thumb": "assets/thumbs/vph_kiunterricht.webp"
-  },
-  {
-    "id": "fhb_prompt",
-    "title": "Prompt-Sammlung für wissenschaftliches Arbeiten",
-    "org": "FH Burgenland (Innovative Lehre)",
-    "url": "https://padlet.com/innovative_lehre/prompt-sammlung-f-r-wissenschaftliches-arbeiten-8aim1m1ppxxl8vn2",
-    "type": "Padlet",
-    "category": "Writing/Study",
-    "level": "HE",
-    "lang": "DE",
-    "desc": "Prompt-Beispiele und Strukturhilfen für wissenschaftliche Texte.",
-    "tags": [
-      "Prompting",
-      "Writing/Study"
-    ],
-    "thumb": "assets/thumbs/fhb_prompt.webp"
-  },
-  {
-    "id": "dettwiler_kiunterricht",
-    "title": "KI im Unterricht",
-    "org": "Dettwiler Education (zebis verlinkt)",
-    "url": "https://padlet.com/dettwilereducation/ki-im-unterricht-ora5emt9ceyumhze",
-    "type": "Padlet",
-    "category": "AI Overview",
-    "level": "mixed",
-    "lang": "DE",
-    "desc": "Übersichtliche Sammlung; gut zum schnellen Stöbern.",
-    "tags": [
-      "Unterricht",
-      "Ressourcen"
-    ],
-    "thumb": "assets/thumbs/dettwiler_kiunterricht.webp"
-  },
-  {
-    "id": "wl_cheatsheet",
-    "title": "AI in Education Cheat Sheet",
-    "org": "Washington and Lee University – Harte Center",
-    "url": "https://padlet.com/hartecenter/ai-in-education-cheat-sheet-8apy11avc5kzlbox",
-    "type": "Padlet",
-    "category": "AI Overview",
-    "level": "HE",
-    "lang": "EN",
-    "desc": "Kompakte, sehr gut strukturierte Übersicht (Quick guidance).",
-    "tags": [
-      "Unterricht",
-      "AI-Literacy",
-      "Cheat Sheet"
-    ],
-    "thumb": "assets/thumbs/wl_cheatsheet.webp"
-  },
-  {
-    "id": "wl_resources",
-    "title": "AI Resources",
-    "org": "Washington and Lee University – Harte Center",
-    "url": "https://padlet.com/hartecenter/ai-resources-fie5iq8myfgvb58h",
-    "type": "Padlet",
-    "category": "AI Overview",
-    "level": "HE",
-    "lang": "EN",
-    "desc": "Breite Ressourcensammlung rund um GenAI in Lehre/Lernen.",
-    "tags": [
-      "Ressourcen",
-      "Tools",
-      "Policies/Ethics"
-    ],
-    "thumb": "assets/thumbs/wl_resources.webp"
-  },
-  {
-    "id": "wl_prompting",
-    "title": "Creating an Effective Prompt",
-    "org": "Washington and Lee University – Harte Center",
-    "url": "https://padlet.com/hartecenter/creating-an-effective-prompt-fall-academy-2025-y7nlvlvbbyjjdo9e",
-    "type": "Padlet",
-    "category": "Prompting",
-    "level": "mixed",
-    "lang": "EN",
-    "desc": "Prompting-Board mit Beispielen & Prinzipien.",
-    "tags": [
-      "Prompting",
-      "Unterricht",
-      "Best Practice"
-    ],
-    "thumb": "assets/thumbs/wl_prompting.webp"
-  },
-  {
-    "id": "liverpool_assessment",
-    "title": "GenAI Fest: Assessment Redesign",
-    "org": "University of Liverpool – Centre for Innovation in Education",
-    "url": "https://padlet.com/livunicie/genai-fest-assessment-redesign-66e4mt5lcvd9cl12",
-    "type": "Padlet",
-    "category": "Assessment",
-    "level": "HE",
-    "lang": "EN",
-    "desc": "Assessment/Prüfungsdesign mit GenAI: Beispiele, Strategien, Diskussionen.",
-    "tags": [
-      "Assessment",
-      "Prüfung",
-      "Didaktik"
-    ],
-    "thumb": "assets/thumbs/liverpool_assessment.webp"
-  },
-  {
+   {
     "id": "kch_titrationstool",
     "title": "TITRATIONSTOOL",
     "org": "K_CH_TOOLS (Erich Kerzendorfer)",
@@ -301,5 +116,123 @@
       "Tool"
     ],
     "thumb": "assets/thumbs/kch_periodensytem.webp"
+  },
+  {
+    "id": "eis_fachunterricht",
+    "title": "Künstliche Intelligenz im (Fach-)Unterricht",
+    "org": "PH Wien / EIS",
+    "url": "https://padlet.com/eis/k-nstliche-intelligenz-im-fach-unterricht-nljhe9esamxq3zrv",
+    "type": "Padlet",
+    "category": "AI Overview",
+    "level": "mixed",
+    "lang": "DE",
+    "desc": "Breite Linkliste für KI-Einsatz im Unterricht, fachübergreifend.",
+    "tags": [
+      "Unterricht",
+      "AI-Literacy",
+      "Best Practice"
+    ],
+    "thumb": "assets/thumbs/eis_fachunterricht.webp"
+  },
+  {
+    "id": "eis_mint",
+    "title": "KI im MINT-Unterricht",
+    "org": "PH Wien / EIS",
+    "url": "https://padlet.com/eis/ki-im-mint-unterricht-6gn4yg4wcutmsfb8",
+    "type": "Padlet",
+    "category": "MINT/STEM",
+    "level": "SEK1/SEK2",
+    "lang": "DE",
+    "desc": "MINT-spezifische Ideen, Links, Materialien.",
+    "tags": [
+      "MINT",
+      "Unterricht",
+      "Ressourcen"
+    ],
+    "thumb": "assets/thumbs/eis_mint.webp"
+  },
+  {
+    "id": "eis_hochschule",
+    "title": "KI-gestützte Hochschule",
+    "org": "PH Wien / EIS (K:MID)",
+    "url": "https://padlet.com/eis/ki-gest-tzte-hochschule-wu8oxq5as3nznarw",
+    "type": "Padlet",
+    "category": "AI Overview",
+    "level": "HE",
+    "lang": "DE",
+    "desc": "Ressourcen rund um KI in der Hochschullehre (teilweise übertragbar auf SEK2).",
+    "tags": [
+      "HE",
+      "Policies/Ethics",
+      "Didaktik"
+    ],
+    "thumb": "assets/thumbs/eis_hochschule.webp"
+  },
+  {
+    "id": "eis_writingskills",
+    "title": "KI-gestütztes wissenschaftliches Schreiben",
+    "org": "PH Wien / EIS",
+    "url": "https://padlet.com/eis/ki-gest-tztes-wissenschaftliches-schreiben-n0w3p7us5qm0rcoc",
+    "type": "Padlet",
+    "category": "Writing/Study",
+    "level": "SEK2/HE",
+    "lang": "DE",
+    "desc": "Prompts & Hinweise fürs Schreiben (Chancen, Grenzen, Qualitätskontrolle).",
+    "tags": [
+      "Writing/Study",
+      "Prompting",
+      "Qualitätscheck"
+    ],
+    "thumb": "assets/thumbs/eis_writingskills.webp"
+  },
+  {
+    "id": "vph_kiunterricht",
+    "title": "KI für den Unterricht – Links/Ideen/Ressourcen",
+    "org": "Virtuelle PH (AT) / A. Bankhofer",
+    "url": "https://padlet.com/aliciabankhofer/ki-f-r-den-unterricht-links-ideen-ressourcen-einsatzideen-f--7qczpkgbgpthugn",
+    "type": "Padlet",
+    "category": "AI Overview",
+    "level": "mixed",
+    "lang": "DE",
+    "desc": "Breite, praxisnahe Linkliste mit Einsatzideen.",
+    "tags": [
+      "Unterricht",
+      "Tools",
+      "Ideenpool"
+    ],
+    "thumb": "assets/thumbs/vph_kiunterricht.webp"
+  },
+  {
+    "id": "fhb_prompt",
+    "title": "Prompt-Sammlung für wissenschaftliches Arbeiten",
+    "org": "FH Burgenland (Innovative Lehre)",
+    "url": "https://padlet.com/innovative_lehre/prompt-sammlung-f-r-wissenschaftliches-arbeiten-8aim1m1ppxxl8vn2",
+    "type": "Padlet",
+    "category": "Writing/Study",
+    "level": "HE",
+    "lang": "DE",
+    "desc": "Prompt-Beispiele und Strukturhilfen für wissenschaftliche Texte.",
+    "tags": [
+      "Prompting",
+      "Writing/Study"
+    ],
+    "thumb": "assets/thumbs/fhb_prompt.webp"
+  },
+  {
+    "id": "dettwiler_kiunterricht",
+    "title": "KI im Unterricht",
+    "org": "Dettwiler Education (zebis verlinkt)",
+    "url": "https://padlet.com/dettwilereducation/ki-im-unterricht-ora5emt9ceyumhze",
+    "type": "Padlet",
+    "category": "AI Overview",
+    "level": "mixed",
+    "lang": "DE",
+    "desc": "Übersichtliche Sammlung; gut zum schnellen Stöbern.",
+    "tags": [
+      "Unterricht",
+      "Ressourcen"
+    ],
+    "thumb": "assets/thumbs/dettwiler_kiunterricht.webp"
   }
+ 
 ]
