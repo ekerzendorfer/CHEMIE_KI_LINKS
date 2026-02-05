@@ -18,7 +18,11 @@
                 <h1 class="text-3xl font-bold text-slate-800">Link-Manager</h1>
                 <p class="text-slate-500">Editor für die links_list.json</p>
             </div>
-            <div class="flex gap-2">
+            <div class="flex gap-2 items-center">
+                <a href="index.html" class="text-slate-500 hover:text-slate-800 mr-4 font-medium flex items-center gap-1">
+                    ← Zurück zum Hub
+                </a>
+
                 <input type="file" id="fileInput" accept=".json" class="hidden">
                 <button onclick="document.getElementById('fileInput').click()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-sm">
                     JSON laden
@@ -86,7 +90,16 @@
                 container.appendChild(div);
             });
         }
-
+        // Versucht die Datei beim Start automatisch zu laden (funktioniert nur auf dem Server/GitHub Pages)
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('data/links_list.json')
+                .then(response => response.json())
+                .then(data => {
+                    links = data;
+                    renderLinks();
+                })
+                .catch(err => console.log("Keine automatische Datei gefunden, bitte manuell laden."));
+        });
         function addLink() {
             const title = document.getElementById('newTitle').value;
             const type = document.getElementById('newType').value;
