@@ -146,7 +146,7 @@
         <button class="btn secondary" id="btnModeLinks">📚 <span>LINKS und QUELLEN</span></button>
         <button class="btn ghost" id="btnReset">♻️ <span>RESET</span></button>
         <button class="btn ghost" id="btnDebug">🛠️ <span>Debug</span></button>
-        <button class="btn ghost" id="btnAddHint">➕ <span>Erweitern</span> <small>(.json)</small></button>
+        <button class="btn ghost" id="btnEditJson">✏️ <span>Bearbeiten</span> <small>(.json)</small></button>
       </div>
     </header>
 
@@ -498,7 +498,12 @@ Links filters:
   $("btnModeLinks").addEventListener("click", ()=>switchMode("links"));
   $("btnReset").addEventListener("click", resetAll);
   $("btnDebug").addEventListener("click", showDebug);
-  $("btnAddHint").addEventListener("click", addHint);
+  // Event-Listener für den neuen Bearbeiten-Button
+  $("btnEditJson").addEventListener("click", () => {
+  // Öffnet den Editor im gleichen Tab. 
+  // Falls du einen neuen Tab willst, nutze: window.open("editor.html", "_blank");
+  window.location.href = "editor.html", "_blank" 
+  });
 
   $("qTools").addEventListener("input", (e)=>{ stateTools.q = e.target.value.trim(); renderTools(); });
   $("catTools").addEventListener("change", (e)=>{ stateTools.cat = e.target.value; renderTools(); });
