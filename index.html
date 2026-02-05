@@ -499,7 +499,6 @@ Links filters:
   $("btnDebug").addEventListener("click", showDebug);
   $("btnEditTools").addEventListener("click", () => { window.location.href = "editor_tools.html"; });
   $("btnEditLinks").addEventListener("click", () => { window.location.href = "editor.html"; });
-  // Event-Listener für den neuen Bearbeiten-Button
 
   $("qTools").addEventListener("input", (e)=>{ stateTools.q = e.target.value.trim(); renderTools(); });
   $("catTools").addEventListener("change", (e)=>{ stateTools.cat = e.target.value; renderTools(); });
