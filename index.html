@@ -140,13 +140,14 @@
         <div class="subtitle">Zwei Ansichten: <b>TOOLS und WERKZEUGE</b> (Kacheln) & <b>LINKS und QUELLEN</b> (Tabelle).</div>
       </div>
 
-      <div class="top-actions">
-        <button class="btn primary active" id="btnModeTools">⚡ <span>TOOLS</span></button>
-        <button class="btn secondary" id="btnModeLinks">📚 <span>LINKS</span></button>
-        <button class="btn ghost" id="btnReset">♻️ <span>RESET</span></button>
-        <button class="btn ghost" id="btnEditTools">⚙️ <span>Bearbeiten (Tools)</span></button>
-        <button class="btn ghost" id="btnEditLinks">✏️ <span>Bearbeiten (Links)</span></button>
-      </div>
+    <div class="top-actions">
+      <button class="btn primary active" id="btnModeTools">⚡ <span>TOOLS</span></button>
+      <button class="btn secondary" id="btnModeLinks">📚 <span>LINKS</span></button>
+      <button class="btn ghost" id="btnReset">♻️ <span>RESET</span></button>
+      <button class="btn ghost" id="btnDebug">🛠️ <span>DEBUG</span></button>
+      <button class="btn ghost" id="btnEditTools">⚙️ <span>Bearbeiten (Tools)</span></button>
+      <button class="btn ghost" id="btnEditLinks">✏️ <span>Bearbeiten (Links)</span></button>
+    </div>
     </header>
 
     <div class="banner" id="banner"></div>
@@ -492,30 +493,38 @@ Links filters:
     }
   }
 
-  // Events
-  $("btnModeTools").addEventListener("click", ()=>switchMode("tools"));
-  $("btnModeLinks").addEventListener("click", ()=>switchMode("links"));
+// Events
+  $("btnModeTools").addEventListener("click", () => switchMode("tools"));
+  $("btnModeLinks").addEventListener("click", () => switchMode("links"));
   $("btnReset").addEventListener("click", resetAll);
-  $("btnDebug").addEventListener("click", showDebug);
+  
+  // Prüft, ob der Debug-Button da ist, bevor der Listener gesetzt wird
+  if ($("btnDebug")) {
+    $("btnDebug").addEventListener("click", showDebug);
+  }
+
+  // Die neuen Editor-Links
   $("btnEditTools").addEventListener("click", () => { window.location.href = "editor_tools.html"; });
   $("btnEditLinks").addEventListener("click", () => { window.location.href = "editor.html"; });
 
-  $("qTools").addEventListener("input", (e)=>{ stateTools.q = e.target.value.trim(); renderTools(); });
-  $("catTools").addEventListener("change", (e)=>{ stateTools.cat = e.target.value; renderTools(); });
-  $("levelTools").addEventListener("change", (e)=>{ stateTools.level = e.target.value; renderTools(); });
-  $("langTools").addEventListener("change", (e)=>{ stateTools.lang = e.target.value; renderTools(); });
+  // Such- und Filter-Events
+  $("qTools").addEventListener("input", (e) => { stateTools.q = e.target.value.trim(); renderTools(); });
+  $("catTools").addEventListener("change", (e) => { stateTools.cat = e.target.value; renderTools(); });
+  $("levelTools").addEventListener("change", (e) => { stateTools.level = e.target.value; renderTools(); });
+  $("langTools").addEventListener("change", (e) => { stateTools.lang = e.target.value; renderTools(); });
 
-  $("qLinks").addEventListener("input", (e)=>{ stateLinks.q = e.target.value.trim(); renderLinks(); });
-  $("typeLinks").addEventListener("change", (e)=>{ stateLinks.type = e.target.value; renderLinks(); });
+  $("qLinks").addEventListener("input", (e) => { stateLinks.q = e.target.value.trim(); renderLinks(); });
+  $("typeLinks").addEventListener("change", (e) => { stateLinks.type = e.target.value; renderLinks(); });
 
-  // show JS errors inline (helpful on Pages)
-  window.addEventListener("error", (e)=> {
+  // Fehlerbehandlung
+  window.addEventListener("error", (e) => {
     setBanner(`JavaScript-Fehler:\n${e.message}\n(${e.filename}:${e.lineno}:${e.colno})`);
   });
-  window.addEventListener("unhandledrejection", (e)=> {
-    setBanner(`Promise-Fehler:\n${e.reason?.message || e.reason}`);
+  window.addEventListener("unhandledrejection", (e) => {
+    setBanner(`Promise-Fehler:\n${e.reason}`);
   });
 
+  // WICHTIG: Startet das Laden der JSON-Daten
   init();
 </script>
 </body>
