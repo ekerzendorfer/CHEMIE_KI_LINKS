@@ -31,6 +31,7 @@
                     JSON speichern
                 </button>
             </div>
+            
         </header>
 
         <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
@@ -100,6 +101,7 @@
                 })
                 .catch(err => console.log("Keine automatische Datei gefunden, bitte manuell laden."));
         });
+        
         function addLink() {
             const title = document.getElementById('newTitle').value;
             const type = document.getElementById('newType').value;
