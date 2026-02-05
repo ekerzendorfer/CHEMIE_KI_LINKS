@@ -1,8 +1,58 @@
 [
   {
-    "title": "Künstliche Intelligenz im (Fach-)Unterricht",
+    "title": "Proteins PLUS",
+    "type": "Proteinfaltung, Docking u.v.m.",
+    "url": "https://proteins.plus/"
+  },
+  {
+    "title": "Google - Workspace",
+    "type": "Cloudbasierte Arbeitsumgebung",
+    "url": "https://workspace.google.com/"
+  },
+  {
+    "title": "Freepik",
+    "type": "Bild-/Videoplattform real und KI",
+    "url": "https://de.freepik.com"
+  },
+  {
+    "title": "Rowan",
+    "type": "Molecular Design and Simulation",
+    "url": "https://www.rowansci.com/"
+  },
+  {
+    "title": "Google Colab",
+    "type": "Python - Code und Jupyter Notebooks",
+    "url": "https://colab.google/notebooks/"
+  },
+  {
+    "title": "GitHub",
+    "type": "Online Codeplattform",
+    "url": "https://github.com/"
+  },
+  {
+    "title": "Perplexity - Comet",
+    "type": "KI - Browser",
+    "url": "https://www.perplexity.ai/comet"
+  },
+  {
+    "title": "NotebookLM",
+    "type": "KI",
+    "url": "https://notebooklm.google.com/"
+  },
+  {
+    "title": "Google Gemini",
+    "type": "KI",
+    "url": "https://gemini.google.com/"
+  },
+  {
+    "title": "ChatGPT",
+    "type": "KI",
+    "url": "https://chatgpt.com/"
+  },
+  {
+    "title": "KI für den Unterricht – Links/Ideen/Ressourcen",
     "type": "Padlet",
-    "url": "https://padlet.com/eis/k-nstliche-intelligenz-im-fach-unterricht-nljhe9esamxq3zrv"
+    "url": "https://padlet.com/aliciabankhofer/ki-f-r-den-unterricht-links-ideen-ressourcen-einsatzideen-f--7qczpkgbgpthugn"
   },
   {
     "title": "KI im MINT-Unterricht",
@@ -10,13 +60,28 @@
     "url": "https://padlet.com/eis/ki-im-mint-unterricht-6gn4yg4wcutmsfb8"
   },
   {
-    "title": "AI in Education Cheat Sheet",
+    "title": "KI im Unterricht",
     "type": "Padlet",
-    "url": "https://padlet.com/hartecenter/ai-in-education-cheat-sheet-8apy11avc5kzlbox"
+    "url": "https://padlet.com/dettwilereducation/ki-im-unterricht-ora5emt9ceyumhze"
   },
   {
-    "title": "GenAI Fest: Assessment Redesign",
+    "title": "KI gestütztes wissenschaftliches Schreiben ",
     "type": "Padlet",
-    "url": "https://padlet.com/livunicie/genai-fest-assessment-redesign-66e4mt5lcvd9cl12"
+    "url": "https://padlet.com/eis/ki-gest-tztes-wissenschaftliches-schreiben-n0w3p7us5qm0rcoc"
+  },
+  {
+    "title": "KI gesstützte Hochschule",
+    "type": "Padlet",
+    "url": "https://padlet.com/eis/ki-gest-tzte-hochschule-wu8oxq5as3nznarw"
+  },
+  {
+    "title": "Künstliche Intelligenz im (Fach-)Unterricht",
+    "type": "Padlet",
+    "url": "https://padlet.com/eis/k-nstliche-intelligenz-im-fach-unterricht-nljhe9esamxq3zrv"
+  },
+  {
+    "title": "Prompt-Sammlung für wissenschaftliches Arbeiten",
+    "type": "Linksammlung",
+    "url": "https://padlet.com/innovative_lehre/prompt-sammlung-f-r-wissenschaftliches-arbeiten-8aim1m1ppxxl8vn2"
   }
 ]
