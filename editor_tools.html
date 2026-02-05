@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools Editor | Chemie KI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4">
 
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <div>
+                <a href="index_CH_Links.html" class="text-blue-400 hover:text-blue-300 text-sm font-medium">← Zurück zum Hub</a>
+                <h1 class="text-2xl font-bold mt-1">Tools-Sammlung Manager</h1>
+            </div>
+            <div class="flex gap-3">
+                <input type="file" id="fileInput" accept=".json" class="hidden">
+                <button onclick="document.getElementById('fileInput').click()" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg transition text-sm">JSON laden</button>
+                <button onclick="downloadJSON()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition text-sm font-bold shadow-lg">JSON speichern</button>
+            </div>
+        </header>
+
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 mb-8 shadow-xl">
+            <h2 class="text-lg font-semibold mb-4 text-blue-400">Neues Tool hinzufügen</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" id="t_id" placeholder="ID (z.B. kch_neu)" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <input type="text" id="t_title" placeholder="Titel" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <input type="text" id="t_org" placeholder="Organisation / Autor" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <input type="text" id="t_url" placeholder="URL (Öffnen)" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <input type="text" id="t_repo" placeholder="Repo URL (optional)" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <input type="text" id="t_type" placeholder="Typ (z.B. Tool)" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <input type="text" id="t_cat" placeholder="Kategorie" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                <select id="t_level" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                    <option value="SEK1">SEK1</option>
+                    <option value="SEK2">SEK2</option>
+                    <option value="UNI">UNI</option>
+                </select>
+                <select id="t_lang" class="bg-slate-900 border-slate-700 border p-2 rounded">
+                    <option value="DE">DE</option>
+                    <option value="EN">EN</option>
+                </select>
+                <input type="text" id="t_tags" placeholder="Tags (mit Komma getrennt)" class="bg-slate-900 border-slate-700 border p-2 rounded md:col-span-2">
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs text-slate-400">Vorschaubild (assets/thumbs/)</label>
+                    <input type="file" id="t_thumb_file" accept="image/*" class="text-xs">
+                </div>
+                <textarea id="t_desc" placeholder="Beschreibung" class="bg-slate-900 border-slate-700 border p-2 rounded md:col-span-3 h-20"></textarea>
+            </div>
+            <button onclick="addTool()" class="mt-6 w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-lg font-bold transition">Tool zur Liste hinzufügen</button>
+        </div>
+
+        <div id="toolsList" class="space-y-4"></div>
+    </div>
+
+    <script>
+        let tools = [];
+
+        // Auto-Load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('data/tools.json').then(r => r.json()).then(d => { tools = d; renderTools(); }).catch(e => console.log("Manuelles Laden nötig"));
+        });
+
+        // File Loading
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = (e) => { tools = JSON.parse(e.target.result); renderTools(); };
+            reader.readAsText(e.target.files[0]);
+        });
+
+        function renderTools() {
+            const container = document.getElementById('toolsList');
+            container.innerHTML = '';
+            tools.forEach((t, i) => {
+                const div = document.createElement('div');
+                div.className = "bg-slate-800 p-4 rounded-lg border border-slate-700 flex flex-col md:flex-row gap-4 items-start";
+                div.innerHTML = `
+                    <img src="${t.thumb}" class="w-32 h-20 object-cover rounded bg-black" onerror="this.src='https://via.placeholder.com/150?text=Kein+Bild'">
+                    <div class="flex-grow grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                        <div class="font-bold text-blue-400 col-span-2 text-base">${t.title} <span class="text-xs text-slate-500 font-normal">(${t.id})</span></div>
+                        <div class="text-slate-400">${t.type} | ${t.category}</div>
+                        <div class="text-right">
+                             <button onclick="move(${i}, -1)" class="p-1">▲</button>
+                             <button onclick="move(${i}, 1)" class="p-1">▼</button>
+                             <button onclick="remove(${i})" class="text-red-400 ml-4 font-bold">LÖSCHEN</button>
+                        </div>
+                        <div class="col-span-4 text-slate-300 italic">${t.desc}</div>
+                        <div class="col-span-4 flex flex-wrap gap-1">${(t.tags || []).map(tag => `<span class="bg-slate-700 px-2 py-0.5 rounded text-[10px]">${tag}</span>`).join('')}</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function addTool() {
+            const thumbFile = document.getElementById('t_thumb_file').files[0];
+            const thumbPath = thumbFile ? `assets/thumbs/${thumbFile.name}` : "assets/thumbs/default.webp";
+            
+            const newEntry = {
+                id: document.getElementById('t_id').value,
+                title: document.getElementById('t_title').value,
+                org: document.getElementById('t_org').value,
+                url: document.getElementById('t_url').value,
+                repo: document.getElementById('t_repo').value,
+                type: document.getElementById('t_type').value,
+                category: document.getElementById('t_cat').value,
+                level: document.getElementById('t_level').value,
+                lang: document.getElementById('t_lang').value,
+                desc: document.getElementById('t_desc').value,
+                tags: document.getElementById('t_tags').value.split(',').map(s => s.trim()),
+                thumb: thumbPath
+            };
+            
+            tools.unshift(newEntry);
+            renderTools();
+            alert("Hinzugefügt! Vergessen Sie nicht, das Bild '" + (thumbFile ? thumbFile.name : "") + "' in den Ordner assets/thumbs/ hochzuladen.");
+        }
+
+        function remove(i) { if(confirm("Löschen?")) { tools.splice(i, 1); renderTools(); } }
+        
+        function move(i, dir) {
+            let n = i + dir;
+            if(n >= 0 && n < tools.length) { [tools[i], tools[n]] = [tools[n], tools[i]]; renderTools(); }
+        }
+
+        function downloadJSON() {
+            const data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tools, null, 2));
+            const a = document.createElement('a');
+            a.href = data; a.download = "tools.json"; a.click();
+        }
+    </script>
+</body>
+</html>
