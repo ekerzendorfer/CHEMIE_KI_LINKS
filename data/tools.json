@@ -1,5 +1,23 @@
 [
-    {
+  {
+    "id": "kch_gleichungstrainer",
+    "title": "GLEICHUNGS-TRAINER PRO",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/REAKTIONSTRAINER/",
+    "repo": "",
+    "type": "Reaktionsgleichungen ausgleichen",
+    "category": "Tool",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Bei über 100 Reaktionsgleichungen aus anorgaischer und organischer Chemie müssen die Koeffizienten passend ausgeglichen werden. Das Tool kann on- und offline (nur 3 Dateien z.B. auf einem USB-Stick) verwendet werden. Zur Erweiterung und Anpassung der Gleichungen gibt es einen komfortablen Editor.",
+    "tags": [
+      "Reaktionen",
+      "Massenerhaltung",
+      "Koeffizienten"
+    ],
+    "thumb": "assets/thumbs/kch_gleichungstrainer.webp"
+  },
+  {
     "id": "kch_titrationstool",
     "title": "TITRATIONSTOOL",
     "org": "K_CH_TOOLS (Erich Kerzendorfer)",
