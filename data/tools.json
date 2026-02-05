@@ -1,5 +1,42 @@
 [
   {
+    "id": "kch_periodensytem",
+    "title": "PERIODENSYTEM",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/PERIODENSYTEM/",
+    "repo": "https://github.com/ekerzendorfer/PERIODENSYTEM",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK1/SEK2",
+    "lang": "DE",
+    "desc": "Interaktives Periodensystem (Übungen/Quiz/Elementinfos).",
+    "tags": [
+      "PSE",
+      "MINT",
+      "Grundlagen",
+      "Übung",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_periodensytem.webp"
+  },
+  {
+    "id": "kch_stoechiometriemeister",
+    "title": "STÖCHIOMETRIE-MEISTER PRO",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/STOECHIOMETRIE/",
+    "repo": "",
+    "type": "Stöchiometrische Berechnungen",
+    "category": "Tool",
+    "level": "SEK1",
+    "lang": "DE",
+    "desc": "Stoffmengen und Massen berechnen, Reaktionslabor für Reaktionsumsätze, Interaktives Üben, Quiz",
+    "tags": [
+      "Mol",
+      "Molmasse"
+    ],
+    "thumb": "assets/thumbs/kch_stoechiometriemeister.webp"
+  },
+  {
     "id": "kch_gleichungstrainer",
     "title": "GLEICHUNGS-TRAINER PRO",
     "org": "Mag. Erich Kerzendorfer",
@@ -16,6 +53,44 @@
       "Koeffizienten"
     ],
     "thumb": "assets/thumbs/kch_gleichungstrainer.webp"
+  },
+  {
+    "id": "kch_salzformeln",
+    "title": "SALZFORMELN",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/SALZFORMELN/",
+    "repo": "",
+    "type": "Salzformeln erstellen",
+    "category": "Tool",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Bilde die Formel eines Salzes (Salzname gegeben) mit korrekten Indices und Klammern.",
+    "tags": [
+      "Anorganisch",
+      "Salze",
+      "Formeln"
+    ],
+    "thumb": "assets/thumbs/kch_salzformeln.webp"
+  },
+  {
+    "id": "kch_salzbenennung",
+    "title": "SALZBENENNUNG",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/SALZBENENNUNG/",
+    "repo": "https://github.com/ekerzendorfer/SALZBENENNUNG",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK1/SEK2",
+    "lang": "DE",
+    "desc": "Übungstool zur Salzbenennung / Ionen-Editor (interaktiv).",
+    "tags": [
+      "Anorganische Chemie",
+      "Salze",
+      "Nomenklatur",
+      "Übung",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_salzbenennung.webp"
   },
   {
     "id": "kch_titrationstool",
@@ -76,26 +151,6 @@
     "thumb": "assets/thumbs/kch_mol_lab_tasks.webp"
   },
   {
-    "id": "kch_salzbenennung",
-    "title": "SALZBENENNUNG",
-    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
-    "url": "https://ekerzendorfer.github.io/SALZBENENNUNG/",
-    "repo": "https://github.com/ekerzendorfer/SALZBENENNUNG",
-    "type": "Tool",
-    "category": "K_CH_TOOLS",
-    "level": "SEK1/SEK2",
-    "lang": "DE",
-    "desc": "Übungstool zur Salzbenennung / Ionen-Editor (interaktiv).",
-    "tags": [
-      "Anorganische Chemie",
-      "Salze",
-      "Nomenklatur",
-      "Übung",
-      "Tool"
-    ],
-    "thumb": "assets/thumbs/kch_salzbenennung.webp"
-  },
-  {
     "id": "kch_mol_lab",
     "title": "MOL_LAB",
     "org": "K_CH_TOOLS (Erich Kerzendorfer)",
@@ -114,26 +169,5 @@
       "Tool"
     ],
     "thumb": "assets/thumbs/kch_mol_lab.webp"
-  },
-  {
-    "id": "kch_periodensytem",
-    "title": "PERIODENSYTEM",
-    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
-    "url": "https://ekerzendorfer.github.io/PERIODENSYTEM/",
-    "repo": "https://github.com/ekerzendorfer/PERIODENSYTEM",
-    "type": "Tool",
-    "category": "K_CH_TOOLS",
-    "level": "SEK1/SEK2",
-    "lang": "DE",
-    "desc": "Interaktives Periodensystem (Übungen/Quiz/Elementinfos).",
-    "tags": [
-      "PSE",
-      "MINT",
-      "Grundlagen",
-      "Übung",
-      "Tool"
-    ],
-    "thumb": "assets/thumbs/kch_periodensytem.webp"
   }
-
 ]
