@@ -1,5 +1,21 @@
 [
   {
+    "title": "LAB X-change",
+    "type": "Plattform für interaktive Labors",
+    "url": "https://www.labxchange.org/"
+  }, 
+  https://www.labxchange.org/
+ {
+    "title": "ACADEMIC CLOUD",
+    "type": "KI - Plattform für Forschung und Lehre",
+    "url": "https://academiccloud.de/de/"
+  }, 
+  {
+    "title": "IBM RXN for Chemistry",
+    "type": "Reaktionsprognose",
+    "url": "https://rxn.app.accelerate.science/rxn/home"
+  },
+  {
     "title": "SCHOOLTOOLS",
     "type": "Tools (auch KI) für einfach alles",
     "url": "https://www.schooltools.at/"
