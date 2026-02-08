@@ -112,6 +112,26 @@
     "thumb": "assets/thumbs/kch_titrationstool.webp"
   },
   {
+    "id": "kch_genlab",
+    "title": "GENLABOR",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/GENLAB/",
+    "repo": "https://github.com/ekerzendorfer/GENLAB",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Browserbasiertes Gen-Labor (vom genetischen Code zum Protein)",
+    "tags": [
+      "Biochemie",
+      "Protein",
+      "Genetik",
+      "Interaktiv",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_genlab.webp"
+  },
+  {
     "id": "kch_proteinlabor",
     "title": "PROTEINLABOR",
     "org": "K_CH_TOOLS (Erich Kerzendorfer)",
