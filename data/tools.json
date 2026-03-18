@@ -1,4 +1,21 @@
 [
+    {
+    "id": "kch_onlinekurs",
+    "title": "Onlinekurs CHEMIE mit KI",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/CHEMIE-MIT-KI-ONLINEKURS/",
+    "repo": "",
+    "type": "Kurs",
+    "category": "Anleitung",
+    "level": "SEK1",
+    "lang": "DE",
+    "desc": "Online - Begleitkurs zur Artikelserie CHEMI mit KI in der Verbandszeitschrift Chemie & Schule des Verbands der ChemielehrerInnen Österreichs (VCÖ)",
+    "tags": [
+      "Onlinekurs",
+      "Anleitung"
+    ],
+    "thumb": "assets/thumbs/kch_onlinekurs.webp"
+  },
   {
     "id": "kch_periodensytem",
     "title": "PERIODENSYTEM",
