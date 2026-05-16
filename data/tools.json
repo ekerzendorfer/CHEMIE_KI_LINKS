@@ -1,0 +1,229 @@
+[
+  {
+    "id": "kch_redoxcoach",
+    "title": "REDOX - COACH",
+    "org": "Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/REDOXCOACH/",
+    "repo": "https://github.com/ekerzendorfer/REDOXCOACH",
+    "type": "Tool",
+    "category": "Anorganische Chemie - Redox",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Tool zum schrittweisen Lösen von Redoxreaktionen in saurem Mileu:\nGleichung auswählen - Oxidationszahlen bestimmen - Ox/Red-Teilreaktion finden - Elektronenausgleich vollziehen - Sauerstoffatome / Wasserstoffionen ausgleichen - Koeffizienten aller Teilchen festlegen - Ladungsbilanz kontrollieren",
+    "tags": [
+      "Redox",
+      "Oxidation",
+      "Reduktion",
+      "Oxidationszahlen"
+    ],
+    "thumb": "assets/thumbs/kch_redoxcoach.webp"
+  },
+  {
+    "id": "kch_onlinekurs",
+    "title": "Onlinekurs CHEMIE mit KI",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/CHEMIE-MIT-KI-ONLINEKURS/",
+    "repo": "",
+    "type": "Kurs",
+    "category": "Anleitung",
+    "level": "SEK1",
+    "lang": "DE",
+    "desc": "Online - Begleitkurs zur Artikelserie CHEMI mit KI in der Verbandszeitschrift Chemie & Schule des Verbands der ChemielehrerInnen Österreichs (VCÖ)",
+    "tags": [
+      "Onlinekurs",
+      "Anleitung"
+    ],
+    "thumb": "assets/thumbs/kch_onlinekurs.webp"
+  },
+  {
+    "id": "kch_periodensytem",
+    "title": "PERIODENSYTEM",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/PERIODENSYTEM/",
+    "repo": "https://github.com/ekerzendorfer/PERIODENSYTEM",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK1/SEK2",
+    "lang": "DE",
+    "desc": "Interaktives Periodensystem (Übungen/Quiz/Elementinfos).",
+    "tags": [
+      "PSE",
+      "MINT",
+      "Grundlagen",
+      "Übung",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_periodensytem.webp"
+  },
+  {
+    "id": "kch_stoechiometriemeister",
+    "title": "STÖCHIOMETRIE-MEISTER PRO",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/STOECHIOMETRIE/",
+    "repo": "",
+    "type": "Stöchiometrische Berechnungen",
+    "category": "Tool",
+    "level": "SEK1",
+    "lang": "DE",
+    "desc": "Stoffmengen und Massen berechnen, Reaktionslabor für Reaktionsumsätze, Interaktives Üben, Quiz",
+    "tags": [
+      "Mol",
+      "Molmasse"
+    ],
+    "thumb": "assets/thumbs/kch_stoechiometriemeister.webp"
+  },
+  {
+    "id": "kch_gleichungstrainer",
+    "title": "GLEICHUNGS-TRAINER PRO",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/REAKTIONSTRAINER/",
+    "repo": "",
+    "type": "Reaktionsgleichungen ausgleichen",
+    "category": "Tool",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Bei über 100 Reaktionsgleichungen aus anorgaischer und organischer Chemie müssen die Koeffizienten passend ausgeglichen werden. Das Tool kann on- und offline (nur 3 Dateien z.B. auf einem USB-Stick) verwendet werden. Zur Erweiterung und Anpassung der Gleichungen gibt es einen komfortablen Editor.",
+    "tags": [
+      "Reaktionen",
+      "Massenerhaltung",
+      "Koeffizienten"
+    ],
+    "thumb": "assets/thumbs/kch_gleichungstrainer.webp"
+  },
+  {
+    "id": "kch_salzformeln",
+    "title": "SALZFORMELN",
+    "org": "Mag. Erich Kerzendorfer",
+    "url": "https://ekerzendorfer.github.io/SALZFORMELN/",
+    "repo": "",
+    "type": "Salzformeln erstellen",
+    "category": "Tool",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Bilde die Formel eines Salzes (Salzname gegeben) mit korrekten Indices und Klammern.",
+    "tags": [
+      "Anorganisch",
+      "Salze",
+      "Formeln"
+    ],
+    "thumb": "assets/thumbs/kch_salzformeln.webp"
+  },
+  {
+    "id": "kch_salzbenennung",
+    "title": "SALZBENENNUNG",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/SALZBENENNUNG/",
+    "repo": "https://github.com/ekerzendorfer/SALZBENENNUNG",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK1/SEK2",
+    "lang": "DE",
+    "desc": "Übungstool zur Salzbenennung / Ionen-Editor (interaktiv).",
+    "tags": [
+      "Anorganische Chemie",
+      "Salze",
+      "Nomenklatur",
+      "Übung",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_salzbenennung.webp"
+  },
+  {
+    "id": "kch_titrationstool",
+    "title": "TITRATIONSTOOL",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/TITRATIONSTOOL/",
+    "repo": "https://github.com/ekerzendorfer/TITRATIONSTOOL",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Interaktives Titrationstool (GitHub Pages).",
+    "tags": [
+      "Chemie",
+      "Titration",
+      "Interaktiv",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_titrationstool.webp"
+  },
+  {
+    "id": "kch_genlab",
+    "title": "GENLABOR",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/GENLAB/",
+    "repo": "https://github.com/ekerzendorfer/GENLAB",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Browserbasiertes Gen-Labor (vom genetischen Code zum Protein)",
+    "tags": [
+      "Biochemie",
+      "Protein",
+      "Genetik",
+      "Interaktiv",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_genlab.webp"
+  },
+  {
+    "id": "kch_proteinlabor",
+    "title": "PROTEINLABOR",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/PROTEINLABOR/",
+    "repo": "https://github.com/ekerzendorfer/PROTEINLABOR",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Browserbasiertes Protein-Labor (ColabFold/Visualisierung/Workflows).",
+    "tags": [
+      "Biochemie",
+      "Protein",
+      "KI",
+      "Interaktiv",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_proteinlabor.webp"
+  },
+  {
+    "id": "kch_mol_lab_tasks",
+    "title": "MOL_LAB_TASKS",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/MOL_LAB_TASKS/",
+    "repo": "https://github.com/ekerzendorfer/MOL_LAB_TASKS",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Aufgaben-/Arbeitsaufträge rund um MOL_LAB (interaktiv).",
+    "tags": [
+      "Organische Chemie",
+      "Moleküle",
+      "Aufgaben",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_mol_lab_tasks.webp"
+  },
+  {
+    "id": "kch_mol_lab",
+    "title": "MOL_LAB",
+    "org": "K_CH_TOOLS (Erich Kerzendorfer)",
+    "url": "https://ekerzendorfer.github.io/MOL_LAB/",
+    "repo": "https://github.com/ekerzendorfer/MOL_LAB",
+    "type": "Tool",
+    "category": "K_CH_TOOLS",
+    "level": "SEK2",
+    "lang": "DE",
+    "desc": "Interaktives Molekül-Labor (SMILES→2D/3D, Optimierung, Oberflächen, Export).",
+    "tags": [
+      "Organische Chemie",
+      "Moleküle",
+      "3D",
+      "RDKit",
+      "Tool"
+    ],
+    "thumb": "assets/thumbs/kch_mol_lab.webp"
+  }
+]
