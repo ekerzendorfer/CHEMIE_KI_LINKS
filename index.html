@@ -3,528 +3,343 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CHEMIE mit KI – Linkhub</title>
-  <meta name="description" content="Linkhub: Tools/Werkzeuge (Kacheln) + Links/Quellen (Tabelle) für CHEMIE mit KI." />
+  <title>K_CH_TOOLS – Werkzeuge für den Chemieunterricht</title>
+  <meta name="description" content="Browserbasierte Lernwerkzeuge, Simulationen, virtuelle Labore und Molekülumgebungen für den Chemieunterricht in SEK I und SEK II." />
   <style>
     :root{
-      --bg:#0b1220; --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.68);
-      --muted2:rgba(255,255,255,.55); --line:rgba(255,255,255,.12);
-      --radius:18px; --shadow:0 10px 35px rgba(0,0,0,.35); --max:1200px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --bg:#0b1220;
+      --panel:rgba(255,255,255,.055);
+      --panel-strong:rgba(255,255,255,.075);
+      --text:rgba(255,255,255,.93);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.52);
+      --line:rgba(255,255,255,.13);
+      --accent:#7dd3fc;
+      --accent2:#a7f3d0;
+      --warm:#fbbf24;
+      --radius:18px;
+      --shadow:0 10px 35px rgba(0,0,0,.34);
+      --max:1200px;
+      --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      background: radial-gradient(1100px 600px at 10% -10%, rgba(125,211,252,.22), transparent 60%),
-                  radial-gradient(900px 500px at 110% 0%, rgba(167,243,208,.16), transparent 55%),
-                  radial-gradient(800px 600px at 50% 110%, rgba(251,191,36,.10), transparent 60%),
-                  var(--bg);
-      color:var(--text); font-family:var(--font); line-height:1.35;
+      min-height:100vh;
+      color:var(--text);
+      font-family:var(--font);
+      line-height:1.45;
+      background:
+        radial-gradient(1100px 600px at 10% -10%,rgba(125,211,252,.22),transparent 60%),
+        radial-gradient(900px 500px at 110% 0%,rgba(167,243,208,.16),transparent 55%),
+        radial-gradient(800px 600px at 50% 110%,rgba(251,191,36,.10),transparent 60%),
+        var(--bg);
     }
     a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:26px 16px 60px;}
-    header{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; justify-content:space-between; margin-bottom:14px;}
-    .brand{display:flex; flex-direction:column; gap:6px;}
-    .title{font-size:clamp(22px,3.1vw,34px); letter-spacing:.2px; font-weight:760; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
-    .badge{font-size:12px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.05); color:var(--muted);}
-    .subtitle{color:var(--muted); max-width:78ch; font-size:14px;}
-
-    .top-actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
-    .btn{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:750;
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      user-select:none;
-      transition: background .15s ease, border-color .15s ease, transform .08s ease;
+    button,input,select{font:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 16px 56px}
+    header{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+    .brand{display:flex;flex-direction:column;gap:7px}
+    .eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    h1{font-size:clamp(26px,4vw,42px);line-height:1.08;letter-spacing:-.02em;margin:0}
+    .count-badge,.badge,.tag,.level{
+      display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.05)
     }
-    .btn:hover{background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.2)}
-    .btn:active{transform: translateY(1px)}
-    .btn.primary{
-      background:linear-gradient(135deg, rgba(251,191,36,.22), rgba(125,211,252,.10));
-      border-color:rgba(251,191,36,.40);
+    .count-badge{font-size:12px;padding:5px 10px;color:var(--muted)}
+    .subtitle{max-width:78ch;color:var(--muted);font-size:15px}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn,.link{
+      border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);text-decoration:none;
+      border-radius:12px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      transition:background .15s ease,border-color .15s ease,transform .08s ease
     }
-    .btn.secondary{
-      background:linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,243,208,.10));
-      border-color:rgba(125,211,252,.28);
+    .btn{padding:10px 13px;cursor:pointer}
+    .btn:hover,.link:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24)}
+    .btn:active,.link:active{transform:translateY(1px)}
+    .btn.primary{background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(125,211,252,.10));border-color:rgba(251,191,36,.42)}
+    .intro{
+      border:1px solid var(--line);background:linear-gradient(135deg,rgba(125,211,252,.09),rgba(167,243,208,.055));
+      border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);color:rgba(255,255,255,.84)
     }
-    .btn.ghost{background:rgba(255,255,255,.06)}
-    .btn.active{border-color: rgba(255,255,255,.34); background: rgba(255,255,255,.12);}
-
-    .panel{border:1px solid var(--line); background:rgba(255,255,255,.05); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow);}
-    label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px 2px;}
-    input[type="search"], select{
-      width:100%;
-      padding:11px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.25);
-      color:var(--text);
-      outline:none;
+    .intro p{margin:0;max-width:90ch}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+    .controls{display:grid;grid-template-columns:minmax(260px,1.7fr) minmax(190px,1fr) minmax(150px,.7fr) auto;gap:10px;align-items:end}
+    @media(max-width:900px){.controls{grid-template-columns:1fr 1fr}.reset-wrap{grid-column:span 2}}
+    @media(max-width:580px){.controls{grid-template-columns:1fr}.reset-wrap{grid-column:auto}}
+    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px 2px}
+    input[type="search"],select{
+      width:100%;padding:11px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);
+      background:rgba(0,0,0,.24);color:var(--text);outline:none
     }
-    input[type="search"]::placeholder{color:rgba(255,255,255,.45)}
-    .banner{
-      margin-top:10px; border:1px dashed rgba(251,191,36,.35); background:rgba(251,191,36,.08);
-      padding:10px 12px; border-radius:14px; color:rgba(255,255,255,.85); display:none; white-space:pre-wrap;
-    }
-    .meta-row{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
-      margin-top:12px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px;
-    }
-    .pill{display:inline-block; font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); color:rgba(255,255,255,.82);}
-
-    /* ----- TOOLS view (cards) ----- */
-    .controls-tools{display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap:10px; align-items:end;}
-    @media (max-width:960px){ .controls-tools{grid-template-columns:1fr 1fr} }
-    @media (max-width:560px){ .controls-tools{grid-template-columns:1fr} }
-
-    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; align-items:center;}
-    .chip{border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); color:var(--muted); padding:7px 10px; border-radius:999px; cursor:pointer; font-size:12px; font-weight:650;}
-    .chip:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22)}
-    .chip.active{background:rgba(125,211,252,.14); border-color:rgba(125,211,252,.32); color:rgba(255,255,255,.92);}
-
-    .grid{margin-top:16px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
-    @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:620px){.grid{grid-template-columns:1fr}}
-    .card{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04)); box-shadow:var(--shadow); min-height:220px; display:flex; flex-direction:column;}
-    .thumb{height:140px; background:rgba(255,255,255,.05); position:relative; overflow:hidden;}
-    .thumb img{width:100%; height:100%; object-fit:contain; background:rgba(0,0,0,.20); display:block;}
-    .thumb .fallback{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); font-weight:750; letter-spacing:.5px;
-      background: radial-gradient(600px 250px at 10% 10%, rgba(125,211,252,.18), transparent 60%),
-                  radial-gradient(500px 250px at 90% 0%, rgba(167,243,208,.14), transparent 60%),
-                  rgba(0,0,0,.25);}
-    .card-body{padding:12px 12px 10px; display:flex; flex-direction:column; gap:8px; flex:1;}
-    .row1{display:flex; gap:10px; align-items:flex-start; justify-content:space-between;}
-    .h{font-weight:800; letter-spacing:.2px; font-size:15px; margin:0;}
-    .org{font-size:12px; color:var(--muted); margin-top:3px;}
-    .desc{color:var(--muted); font-size:13px; margin:0;}
-    .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:6px;}
-    .tag{font-size:11px; color:rgba(255,255,255,.74); border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); padding:4px 8px; border-radius:999px;}
-    .card-actions{display:flex; gap:8px; padding:10px 12px 12px; border-top:1px solid var(--line); align-items:center; justify-content:space-between;}
-    .link{display:inline-flex; gap:10px; align-items:center; text-decoration:none; font-weight:750; font-size:13px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); flex:1; justify-content:center;}
-    .link:hover{background:rgba(255,255,255,.085); border-color:rgba(255,255,255,.22)}
-    .icon{width:16px; height:16px; display:inline-block;}
-
-    /* ----- LINKS view (table) ----- */
-    .controls-links{display:grid; grid-template-columns: 2fr 1fr; gap:10px; align-items:end;}
-    @media (max-width:720px){.controls-links{grid-template-columns:1fr}}
-
-    .table-wrap{margin-top:16px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:rgba(255,255,255,.04); box-shadow:var(--shadow);}
-    table{width:100%; border-collapse:collapse;}
-    thead th{text-align:left; font-size:12px; color:rgba(255,255,255,.78); padding:12px; background:rgba(0,0,0,.25); border-bottom:1px solid var(--line); position:sticky; top:0;}
-    tbody td{padding:12px; border-bottom:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.86); font-size:13px; vertical-align:top;}
-    tbody tr:hover td{background:rgba(255,255,255,.03)}
-    .urlcell a{word-break:break-word; color:rgba(167,243,208,.92);}
-
-    footer{margin-top:20px; color:var(--muted2); font-size:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;}
-    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      border:1px solid rgba(255,255,255,.16); border-bottom-color:rgba(255,255,255,.24); background:rgba(0,0,0,.25);
-      padding:2px 6px; border-radius:8px; color:rgba(255,255,255,.84); font-size:11px;}
+    input[type="search"]:focus,select:focus{border-color:rgba(125,211,252,.65);box-shadow:0 0 0 3px rgba(125,211,252,.12)}
+    input[type="search"]::placeholder{color:rgba(255,255,255,.43)}
+    select option{background:#111827;color:white}
+    .meta-row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    .hint{color:var(--muted2)}
+    .banner{display:none;margin-top:12px;padding:11px 13px;border:1px dashed rgba(251,191,36,.38);background:rgba(251,191,36,.08);border-radius:14px;white-space:pre-wrap}
+    .grid{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,var(--panel-strong),var(--panel));box-shadow:var(--shadow);min-height:310px;display:flex;flex-direction:column}
+    .thumb{height:145px;background:rgba(0,0,0,.20);position:relative;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:contain;display:block;background:rgba(0,0,0,.18)}
+    .fallback{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;text-align:center;padding:18px;color:rgba(255,255,255,.74);background:radial-gradient(500px 220px at 10% 10%,rgba(125,211,252,.20),transparent 60%),radial-gradient(420px 220px at 90% 0%,rgba(167,243,208,.14),transparent 60%),rgba(0,0,0,.22)}
+    .fallback-icon{font-size:30px;line-height:1}
+    .fallback-title{font-weight:850;letter-spacing:.04em;font-size:13px}
+    .card-body{padding:13px 13px 11px;display:flex;flex-direction:column;gap:9px;flex:1}
+    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .card h2{font-size:16px;line-height:1.25;letter-spacing:.01em;margin:0}
+    .badge{font-size:11px;padding:4px 8px;color:rgba(255,255,255,.78);white-space:nowrap}
+    .desc{margin:0;color:var(--muted);font-size:13px}
+    .labels{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+    .level{font-size:11px;padding:4px 8px;color:rgba(167,243,208,.94);border-color:rgba(167,243,208,.24);background:rgba(167,243,208,.08)}
+    .tag{font-size:11px;padding:4px 8px;color:rgba(255,255,255,.70)}
+    .card-actions{display:flex;gap:8px;padding:10px 12px 12px;border-top:1px solid var(--line)}
+    .link{padding:9px 11px;font-size:13px;flex:1}
+    .link.primary{background:linear-gradient(135deg,rgba(125,211,252,.16),rgba(167,243,208,.08));border-color:rgba(125,211,252,.28)}
+    .link.repo{flex:0 0 auto;min-width:82px}
+    .icon{width:16px;height:16px;display:inline-block}
+    .empty{grid-column:1/-1;text-align:center;padding:32px 18px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted)}
+    footer{margin-top:22px;color:var(--muted2);font-size:12px;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.22);padding:2px 6px;border-radius:7px;color:rgba(255,255,255,.80)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="title">
-          CHEMIE mit KI – Linkhub
-          <span class="badge" id="badgeCount">…</span>
-          <span class="badge" id="badgeSource">Daten: …</span>
+        <div class="eyebrow">CHEMIE mit KI</div>
+        <div class="title-row">
+          <h1>K_CH_TOOLS</h1>
+          <span class="count-badge" id="badgeCount">…</span>
         </div>
-        <div class="subtitle">Zwei Ansichten: <b>TOOLS und WERKZEUGE</b> (Kacheln) & <b>LINKS und QUELLEN</b> (Tabelle).</div>
+        <div class="subtitle">Browserbasierte Lernwerkzeuge, Simulationen, virtuelle Labore und Molekülumgebungen für den Chemieunterricht in SEK I und SEK II.</div>
       </div>
-
-    <div class="top-actions">
-      <button class="btn primary active" id="btnModeTools">⚡ <span>TOOLS</span></button>
-      <button class="btn secondary" id="btnModeLinks">📚 <span>LINKS</span></button>
-      <button class="btn ghost" id="btnReset">♻️ <span>RESET</span></button>
-      <button class="btn ghost" id="btnDebug">🛠️ <span>DEBUG</span></button>
-      <button class="btn ghost" id="btnEditTools">⚙️ <span>Bearbeiten (Tools)</span></button>
-      <button class="btn ghost" id="btnEditLinks">✏️ <span>Bearbeiten (Links)</span></button>
-    </div>
+      <div class="top-actions">
+        <a class="btn primary" href="https://ekerzendorfer.github.io/CHEMIE-MIT-KI-ONLINEKURS/" target="_blank" rel="noopener">📘 Onlinekurs</a>
+      </div>
     </header>
 
-    <div class="banner" id="banner"></div>
+    <section class="intro" aria-label="Einführung">
+      <p>Die hier versammelten Anwendungen wurden für Unterricht, Demonstration, selbstständiges Üben und experimentelles Erkunden entwickelt. Sie können ohne Installation direkt im Browser genutzt werden.</p>
+    </section>
 
-    <!-- FILTER: TOOLS -->
-    <section class="panel" id="panelTools" aria-label="Tools-Filter">
-      <div class="controls-tools">
+    <section class="panel" aria-label="Werkzeuge filtern">
+      <div class="controls">
         <div>
           <label for="qTools">Suche</label>
-          <input id="qTools" type="search" placeholder="z.B. MOL_LAB, Titration, PSE, Protein …" autocomplete="off" />
-        </div>
-        <div><label for="catTools">Kategorie</label><select id="catTools"></select></div>
-        <div><label for="levelTools">Level</label><select id="levelTools"></select></div>
-        <div><label for="langTools">Sprache</label><select id="langTools"></select></div>
-      </div>
-
-      <div class="chips" id="chipsTools" aria-label="Tag-Filter"></div>
-
-      <div class="meta-row">
-        <div><span id="resultInfoTools">–</span></div>
-        <div><span class="pill">TOOLS</span></div>
-      </div>
-    </section>
-
-    <!-- FILTER: LINKS (bewusst einfach) -->
-    <section class="panel" id="panelLinks" style="display:none" aria-label="Links-Filter">
-      <div class="controls-links">
-        <div>
-          <label for="qLinks">Suche</label>
-          <input id="qLinks" type="search" placeholder="z.B. Padlet, assessment, guideline …" autocomplete="off" />
+          <input id="qTools" type="search" placeholder="z. B. Titration, Protein, Periodensystem …" autocomplete="off" />
         </div>
         <div>
-          <label for="typeLinks">Typ</label>
-          <select id="typeLinks"></select>
+          <label for="catTools">Bereich</label>
+          <select id="catTools"></select>
+        </div>
+        <div>
+          <label for="levelTools">Schulstufe</label>
+          <select id="levelTools">
+            <option value="all">Alle Stufen</option>
+            <option value="SEK1">SEK I</option>
+            <option value="SEK2">SEK II</option>
+          </select>
+        </div>
+        <div class="reset-wrap">
+          <button class="btn" id="btnReset" type="button">Filter zurücksetzen</button>
         </div>
       </div>
-
       <div class="meta-row">
-        <div><span id="resultInfoLinks">–</span></div>
-        <div><span class="pill">LINKS</span></div>
+        <span id="resultInfo">–</span>
+        <span class="hint">Suche berücksichtigt Titel, Beschreibung und Stichwörter.</span>
       </div>
     </section>
 
-    <!-- TOOLS VIEW -->
-    <main class="grid" id="gridTools" aria-label="Tools-Kacheln"></main>
-
-    <!-- LINKS VIEW -->
-    <section class="table-wrap" id="tableLinksWrap" style="display:none" aria-label="Links-Tabelle">
-      <table>
-        <thead>
-          <tr>
-            <th style="width:40%">title</th>
-            <th style="width:18%">type</th>
-            <th>url</th>
-          </tr>
-        </thead>
-        <tbody id="tbodyLinks"></tbody>
-      </table>
-    </section>
+    <div class="banner" id="banner" role="status"></div>
+    <main class="grid" id="gridTools" aria-label="Chemie-Werkzeuge"></main>
 
     <footer>
-      <div>Erstellt von <b>Mag. Erich Kerzendorfer</b> mit Hilfe von <b>ChatGPT</b></div>
-      <div>Version: <span class="kbd" id="ver">v1.1</span> · <span class="kbd">2026-01-30</span></div>
+      <div>Erstellt von <strong>Mag. Erich Kerzendorfer</strong> mit Unterstützung von <strong>ChatGPT</strong></div>
+      <div>Version <span class="kbd">v1.2</span> · <span class="kbd">2026-08-03</span></div>
     </footer>
   </div>
 
 <script>
-  // Datenquellen (zwei JSONs, wie besprochen):
+  "use strict";
+
   const URL_TOOLS = "data/tools.json";
-  const URL_LINKS = "data/links_list.json";
-
   let TOOLS = [];
-  let LINKS = [];
-
-  const stateTools = { q:"", cat:"all", level:"all", lang:"all", chip:"all" };
-  const stateLinks = { q:"", type:"all" };
-  let mode = "tools"; // "tools" | "links"
-
+  const state = { q: "", category: "all", level: "all" };
   const $ = (id) => document.getElementById(id);
 
-  function setBanner(msg){
-    const b = $("banner");
-    if(!msg){ b.style.display="none"; b.textContent=""; return; }
-    b.style.display="block";
-    b.textContent = msg;
+  function normalize(value) {
+    return (value ?? "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
-  function normalize(s){
-    return (s||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  function escapeHtml(value) {
+    return (value ?? "").toString()
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
-  function escapeHtml(str){
-    return (str ?? "").toString()
-      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  function escapeAttr(value) {
+    return escapeHtml(value);
   }
-  function escapeAttr(str){ return escapeHtml(str); }
 
-  function uniq(arr){ return [...new Set(arr)].sort((a,b)=>a.localeCompare(b,'de')); }
+  function uniq(values) {
+    return [...new Set(values)].sort((a, b) => a.localeCompare(b, "de"));
+  }
 
-  function buildSelect(sel, values, labelAll){
-    sel.innerHTML = "";
-    const oAll = document.createElement("option");
-    oAll.value = "all";
-    oAll.textContent = labelAll;
-    sel.appendChild(oAll);
-    values.forEach(v=>{
-      const o = document.createElement("option");
-      o.value = v;
-      o.textContent = v;
-      sel.appendChild(o);
+  function setBanner(message) {
+    const banner = $("banner");
+    banner.textContent = message || "";
+    banner.style.display = message ? "block" : "none";
+  }
+
+  function buildCategorySelect() {
+    const select = $("catTools");
+    select.innerHTML = '<option value="all">Alle Bereiche</option>';
+    uniq(TOOLS.map((item) => item.category).filter(Boolean)).forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      select.appendChild(option);
     });
   }
 
-  function buildChips(tags){
-    const chips = $("chipsTools");
-    chips.innerHTML = "";
-    const make = (text, value) => {
-      const c = document.createElement("button");
-      c.className = "chip";
-      c.type = "button";
-      c.textContent = text;
-      c.dataset.value = value;
-      c.addEventListener("click", ()=>{
-        stateTools.chip = value;
-        [...chips.querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
-        c.classList.add("active");
-        renderTools();
-      });
-      return c;
-    };
-    const all = make("Alle Tags", "all");
-    all.classList.add("active");
-    chips.appendChild(all);
-    tags.forEach(t=> chips.appendChild(make(t, t)));
+  function matchesLevel(item, selectedLevel) {
+    if (selectedLevel === "all") return true;
+    return (item.level || "").split("/").includes(selectedLevel);
   }
 
-  function matchesQueryTools(item, q){
-    if(!q) return true;
-    const hay = [item.title, item.org, item.type, item.category, item.level, item.lang, item.desc, ...(item.tags||[])].join(" • ");
-    return normalize(hay).includes(normalize(q));
+  function matchesQuery(item, query) {
+    if (!query) return true;
+    const haystack = [
+      item.title,
+      item.category,
+      item.level,
+      item.desc,
+      ...(item.tags || [])
+    ].join(" • ");
+    return normalize(haystack).includes(normalize(query));
   }
 
-  function filterTools(){
-    return TOOLS.filter(item=>{
-      if(stateTools.cat !== "all" && item.category !== stateTools.cat) return false;
-      if(stateTools.level !== "all" && item.level !== stateTools.level) return false;
-      if(stateTools.lang !== "all" && item.lang !== stateTools.lang) return false;
-      if(stateTools.chip !== "all" && !(item.tags||[]).includes(stateTools.chip)) return false;
-      if(!matchesQueryTools(item, stateTools.q)) return false;
-      return true;
+  function filteredTools() {
+    return TOOLS.filter((item) => {
+      if (state.category !== "all" && item.category !== state.category) return false;
+      if (!matchesLevel(item, state.level)) return false;
+      return matchesQuery(item, state.q);
     });
   }
 
-  function iconSvg(){
+  function linkIcon() {
     return `<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       <path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>`;
   }
 
-  function cardTemplate(item){
-    const hasThumb = !!item.thumb;
-    const badge = item.type || "Tool";
-    const tags = (item.tags||[]).slice(0,8).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
-    const org = item.org ? `<div class="org">${escapeHtml(item.org)}</div>` : "";
-    const desc = item.desc ? `<p class="desc">${escapeHtml(item.desc)}</p>` : "";
-    const repoLink = item.repo ? `<a class="link" href="${escapeAttr(item.repo)}" target="_blank" rel="noopener">${iconSvg()} Repo</a>` : "";
-
-    return `
-      <article class="card">
-        <div class="thumb">
-          ${hasThumb ? `<img src="${escapeAttr(item.thumb)}" alt="Vorschaubild: ${escapeAttr(item.title)}" loading="lazy">`
-                      : `<div class="fallback">${escapeHtml(badge)}</div>`}
-        </div>
-        <div class="card-body">
-          <div class="row1">
-            <div>
-              <h3 class="h">${escapeHtml(item.title || "—")}</h3>
-              ${org}
-            </div>
-            <span class="badge">${escapeHtml(badge)}</span>
-          </div>
-          ${desc}
-          <div class="tags">${tags}</div>
-        </div>
-        <div class="card-actions">
-          <a class="link" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">${iconSvg()} Öffnen</a>
-          ${repoLink}
-        </div>
-      </article>
-    `;
+  function githubIcon() {
+    return `<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C15.2 4.7 16.2 5 16.2 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.4 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.4 11.4 0 0 0 12 .8Z"/>
+    </svg>`;
   }
 
-  function renderTools(){
-    const filtered = filterTools();
-    $("gridTools").innerHTML = filtered.map(cardTemplate).join("");
-    $("resultInfoTools").textContent = `${filtered.length} Treffer`;
-    $("badgeCount").textContent = `${TOOLS.length} Tools`;
-    if(TOOLS.length === 0) setBanner("TOOLS: 0 Einträge geladen. Prüfe data/tools.json");
-    else if(filtered.length === 0) setBanner("Keine Treffer (TOOLS). Filter zurücksetzen oder Suchbegriff ändern.");
-    else setBanner("");
-  }
-
-  // ---- LINKS (Table) ----
-  function matchesQueryLinks(item, q){
-    if(!q) return true;
-    const hay = [item.title, item.type, item.url].join(" • ");
-    return normalize(hay).includes(normalize(q));
-  }
-
-  function filterLinks(){
-    return LINKS.filter(item=>{
-      if(stateLinks.type !== "all" && (item.type||"") !== stateLinks.type) return false;
-      if(!matchesQueryLinks(item, stateLinks.q)) return false;
-      return true;
-    });
-  }
-
-  function rowTemplate(item){
+  function cardTemplate(item) {
     const title = escapeHtml(item.title || "—");
-    const type = escapeHtml(item.type || "—");
-    const url = escapeAttr(item.url || "#");
-    return `
-      <tr>
-        <td>${title}</td>
-        <td><span class="pill">${type}</span></td>
-        <td class="urlcell"><a href="${url}" target="_blank" rel="noopener">${escapeHtml(item.url || "")}</a></td>
-      </tr>
-    `;
+    const description = escapeHtml(item.desc || "");
+    const category = escapeHtml(item.category || "Tool");
+    const level = escapeHtml((item.level || "").replace("SEK1/SEK2", "SEK I–II").replace("SEK1", "SEK I").replace("SEK2", "SEK II"));
+    const tags = (item.tags || []).slice(0, 2).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+    const thumbnail = item.thumb
+      ? `<img src="${escapeAttr(item.thumb)}" alt="Vorschaubild zu ${title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="fallback" style="display:none"><span class="fallback-icon">⚗️</span><span class="fallback-title">${title}</span></div>`
+      : `<div class="fallback"><span class="fallback-icon">⚗️</span><span class="fallback-title">${title}</span></div>`;
+    const repo = item.repo
+      ? `<a class="link repo" href="${escapeAttr(item.repo)}" target="_blank" rel="noopener" aria-label="Repository von ${title} öffnen">${githubIcon()} Repo</a>`
+      : "";
+    const openLabel = item.type === "Kurs" ? "Kurs öffnen" : "Tool öffnen";
+
+    return `<article class="card">
+      <div class="thumb">${thumbnail}</div>
+      <div class="card-body">
+        <div class="card-head">
+          <h2>${title}</h2>
+          <span class="badge">${category}</span>
+        </div>
+        <p class="desc">${description}</p>
+        <div class="labels">
+          ${level ? `<span class="level">${level}</span>` : ""}
+          ${tags}
+        </div>
+      </div>
+      <div class="card-actions">
+        <a class="link primary" href="${escapeAttr(item.url || "#")}" target="_blank" rel="noopener">${linkIcon()} ${openLabel}</a>
+        ${repo}
+      </div>
+    </article>`;
   }
 
-  function renderLinks(){
-    const filtered = filterLinks();
-    $("tbodyLinks").innerHTML = filtered.map(rowTemplate).join("");
-    $("resultInfoLinks").textContent = `${filtered.length} Treffer`;
-    $("badgeCount").textContent = `${LINKS.length} Links`;
-    if(LINKS.length === 0) setBanner("LINKS: 0 Einträge geladen. Prüfe data/links_list.json");
-    else if(filtered.length === 0) setBanner("Keine Treffer (LINKS). Filter zurücksetzen oder Suchbegriff ändern.");
-    else setBanner("");
+  function renderTools() {
+    const filtered = filteredTools();
+    const grid = $("gridTools");
+    grid.innerHTML = filtered.length
+      ? filtered.map(cardTemplate).join("")
+      : '<div class="empty">Keine passenden Werkzeuge gefunden. Bitte Suchbegriff oder Filter ändern.</div>';
+    $("resultInfo").textContent = `${filtered.length} von ${TOOLS.length} Werkzeugen`;
+    $("badgeCount").textContent = `${TOOLS.length} Werkzeuge`;
   }
 
-  function switchMode(newMode){
-    mode = newMode;
-    $("btnModeTools").classList.toggle("active", mode === "tools");
-    $("btnModeLinks").classList.toggle("active", mode === "links");
-
-    $("panelTools").style.display = mode === "tools" ? "block" : "none";
-    $("gridTools").style.display = mode === "tools" ? "grid" : "none";
-
-    $("panelLinks").style.display = mode === "links" ? "block" : "none";
-    $("tableLinksWrap").style.display = mode === "links" ? "block" : "none";
-
-    // when switching: keep existing search text per mode
-    if(mode === "tools") renderTools(); else renderLinks();
-  }
-
-  function resetAll(){
-    // tools
-    stateTools.q=""; stateTools.cat="all"; stateTools.level="all"; stateTools.lang="all"; stateTools.chip="all";
-    $("qTools").value=""; $("catTools").value="all"; $("levelTools").value="all"; $("langTools").value="all";
-    [...$("chipsTools").querySelectorAll(".chip")].forEach(x=>x.classList.remove("active"));
-    const first = $("chipsTools").querySelector(".chip"); if(first) first.classList.add("active");
-
-    // links
-    stateLinks.q=""; stateLinks.type="all";
-    $("qLinks").value=""; $("typeLinks").value="all";
-
+  function resetFilters() {
+    state.q = "";
+    state.category = "all";
+    state.level = "all";
+    $("qTools").value = "";
+    $("catTools").value = "all";
+    $("levelTools").value = "all";
     setBanner("");
-    if(mode === "tools") renderTools(); else renderLinks();
+    renderTools();
   }
 
-  function showDebug(){
-    const msg =
-`MODE: ${mode}
-TOOLS entries: ${TOOLS.length} (data/tools.json)
-LINKS entries: ${LINKS.length} (data/links_list.json)
-
-Tools filters:
-- q="${stateTools.q}"
-- category="${stateTools.cat}"
-- level="${stateTools.level}"
-- lang="${stateTools.lang}"
-- tag="${stateTools.chip}"
-
-Links filters:
-- q="${stateLinks.q}"
-- type="${stateLinks.type}"
-`;
-    setBanner(msg);
+  async function fetchJson(url) {
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status} beim Laden von ${url}`);
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error(`${url} enthält keine JSON-Liste.`);
+    return data;
   }
 
-  function addHint(){
-    if(mode === "tools"){
-      alert(`TOOLS und WERKZEUGE erweitern:
-1) Datei data/tools.json öffnen
-2) Eintrag hinzufügen (thumb optional)
-3) Optional Thumbnail nach assets/thumbs/ hochladen und im Feld "thumb" eintragen`);
-    } else {
-      alert(`LINKS und QUELLEN erweitern:
-1) Datei data/links_list.json öffnen
-2) Eintrag hinzufügen (nur title, type, url – keine Thumbnails nötig)`);
+  async function init() {
+    try {
+      TOOLS = await fetchJson(URL_TOOLS);
+      buildCategorySelect();
+      renderTools();
+    } catch (error) {
+      TOOLS = [];
+      buildCategorySelect();
+      renderTools();
+      setBanner(`Die Werkzeugdaten konnten nicht geladen werden:\n${error.message}`);
     }
   }
 
-  async function fetchJson(url){
-    const res = await fetch(url, { cache:"no-store" });
-    if(!res.ok) throw new Error(`HTTP ${res.status} bei ${url}`);
-    const json = await res.json();
-    if(!Array.isArray(json)) throw new Error(`${url} ist kein JSON-Array (Liste).`);
-    return json;
-  }
-
-  async function init(){
-    $("badgeSource").textContent = "Daten: lade…";
-    try{
-      const [t, l] = await Promise.all([fetchJson(URL_TOOLS), fetchJson(URL_LINKS)]);
-      TOOLS = t; LINKS = l;
-      $("badgeSource").textContent = `Daten: ${URL_TOOLS} + ${URL_LINKS}`;
-
-      // TOOLS selects
-      buildSelect($("catTools"), uniq(TOOLS.map(d=>d.category).filter(Boolean)), "Alle Kategorien");
-      buildSelect($("levelTools"), uniq(TOOLS.map(d=>d.level).filter(Boolean)), "Alle Level");
-      buildSelect($("langTools"), uniq(TOOLS.map(d=>d.lang).filter(Boolean)), "Alle Sprachen");
-      buildChips(uniq(TOOLS.flatMap(d=>d.tags||[])));
-
-      // LINKS select
-      buildSelect($("typeLinks"), uniq(LINKS.map(d=>d.type).filter(Boolean)), "Alle Typen");
-
-      // initial render
-      switchMode("tools");
-    } catch(err) {
-      $("badgeSource").textContent = "Daten: FEHLER";
-      setBanner(`Daten konnten nicht geladen werden:\n${err.message}`);
-      TOOLS=[]; LINKS=[];
-      // still allow UI
-      buildSelect($("catTools"), [], "Alle Kategorien");
-      buildSelect($("levelTools"), [], "Alle Level");
-      buildSelect($("langTools"), [], "Alle Sprachen");
-      buildChips([]);
-      buildSelect($("typeLinks"), [], "Alle Typen");
-      switchMode("tools");
-    }
-  }
-
-// Events
-  $("btnModeTools").addEventListener("click", () => switchMode("tools"));
-  $("btnModeLinks").addEventListener("click", () => switchMode("links"));
-  $("btnReset").addEventListener("click", resetAll);
-  
-  // Prüft, ob der Debug-Button da ist, bevor der Listener gesetzt wird
-  if ($("btnDebug")) {
-    $("btnDebug").addEventListener("click", showDebug);
-  }
-
-  // Die neuen Editor-Links
-  $("btnEditTools").addEventListener("click", () => { window.location.href = "editor_tools.html"; });
-  $("btnEditLinks").addEventListener("click", () => { window.location.href = "editor.html"; });
-
-  // Such- und Filter-Events
-  $("qTools").addEventListener("input", (e) => { stateTools.q = e.target.value.trim(); renderTools(); });
-  $("catTools").addEventListener("change", (e) => { stateTools.cat = e.target.value; renderTools(); });
-  $("levelTools").addEventListener("change", (e) => { stateTools.level = e.target.value; renderTools(); });
-  $("langTools").addEventListener("change", (e) => { stateTools.lang = e.target.value; renderTools(); });
-
-  $("qLinks").addEventListener("input", (e) => { stateLinks.q = e.target.value.trim(); renderLinks(); });
-  $("typeLinks").addEventListener("change", (e) => { stateLinks.type = e.target.value; renderLinks(); });
-
-  // Fehlerbehandlung
-  window.addEventListener("error", (e) => {
-    setBanner(`JavaScript-Fehler:\n${e.message}\n(${e.filename}:${e.lineno}:${e.colno})`);
+  $("qTools").addEventListener("input", (event) => {
+    state.q = event.target.value.trim();
+    renderTools();
   });
-  window.addEventListener("unhandledrejection", (e) => {
-    setBanner(`Promise-Fehler:\n${e.reason}`);
+  $("catTools").addEventListener("change", (event) => {
+    state.category = event.target.value;
+    renderTools();
   });
+  $("levelTools").addEventListener("change", (event) => {
+    state.level = event.target.value;
+    renderTools();
+  });
+  $("btnReset").addEventListener("click", resetFilters);
 
-  // WICHTIG: Startet das Laden der JSON-Daten
   init();
 </script>
 </body>
