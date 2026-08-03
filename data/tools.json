@@ -16,7 +16,8 @@
       "CSV"
     ],
     "featured": true,
-    "updated": "2026-08-03"
+    "updated": "2026-08-03",
+    "thumb": ""
   },
   {
     "id": "kch_titrationstool",
@@ -55,7 +56,8 @@
       "Kinetik"
     ],
     "featured": true,
-    "updated": "2026-07-31"
+    "updated": "2026-07-31",
+    "thumb": ""
   },
   {
     "id": "kch_ki_strukturmodell_lab",
@@ -74,7 +76,8 @@
       "KI"
     ],
     "featured": true,
-    "updated": "2026-07-28"
+    "updated": "2026-07-28",
+    "thumb": ""
   },
   {
     "id": "kch_destillationslabor",
@@ -93,7 +96,8 @@
       "Simulation"
     ],
     "featured": true,
-    "updated": "2026-05-28"
+    "updated": "2026-05-28",
+    "thumb": ""
   },
   {
     "id": "kch_mol_lab_didactic",
@@ -112,7 +116,8 @@
       "Colab"
     ],
     "featured": true,
-    "updated": "2026-07-28"
+    "updated": "2026-07-28",
+    "thumb": "assets/thumbs/kch_mol_lab_didactic.webp"
   },
   {
     "id": "kch_mollab_pro",
@@ -130,7 +135,9 @@
       "3D",
       "Modellierung"
     ],
-    "featured": false
+    "featured": false,
+    "thumb": "",
+    "updated": ""
   },
   {
     "id": "kch_mol_lab",
@@ -149,7 +156,8 @@
       "RDKit"
     ],
     "thumb": "assets/thumbs/kch_mol_lab.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_mol_lab_tasks",
@@ -168,7 +176,8 @@
       "Struktur"
     ],
     "thumb": "assets/thumbs/kch_mol_lab_tasks.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_proteinlabor",
@@ -187,7 +196,8 @@
       "Docking"
     ],
     "thumb": "assets/thumbs/kch_proteinlabor.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_genlab",
@@ -206,7 +216,8 @@
       "Translation"
     ],
     "thumb": "assets/thumbs/kch_genlab.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_ionenfischen",
@@ -224,7 +235,9 @@
       "Ladungen",
       "Spiel"
     ],
-    "featured": false
+    "featured": false,
+    "thumb": "",
+    "updated": ""
   },
   {
     "id": "kch_chemsnake",
@@ -242,7 +255,9 @@
       "Spiel",
       "Wiederholen"
     ],
-    "featured": false
+    "featured": false,
+    "thumb": "",
+    "updated": ""
   },
   {
     "id": "kch_redoxcoach",
@@ -261,7 +276,8 @@
       "Üben"
     ],
     "thumb": "assets/thumbs/kch_redoxcoach.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_periodensystem",
@@ -280,7 +296,8 @@
       "Üben"
     ],
     "thumb": "assets/thumbs/kch_periodensystem.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_stoechiometriemeister",
@@ -299,7 +316,8 @@
       "Berechnen"
     ],
     "thumb": "assets/thumbs/kch_stoechiometriemeister.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_gleichungstrainer",
@@ -318,7 +336,8 @@
       "Üben"
     ],
     "thumb": "assets/thumbs/kch_gleichungstrainer.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_salzformeln",
@@ -337,7 +356,8 @@
       "Ionen"
     ],
     "thumb": "assets/thumbs/kch_salzformeln.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_salzbenennung",
@@ -356,7 +376,8 @@
       "Ionen"
     ],
     "thumb": "assets/thumbs/kch_salzbenennung.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   },
   {
     "id": "kch_onlinekurs",
@@ -375,6 +396,7 @@
       "Unterricht"
     ],
     "thumb": "assets/thumbs/kch_onlinekurs.webp",
-    "featured": false
+    "featured": false,
+    "updated": ""
   }
 ]
