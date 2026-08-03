@@ -17,7 +17,7 @@
     ],
     "featured": true,
     "updated": "2026-08-03",
-    "thumb": ""
+    "thumb": "assets/thums/kch_daten_lab.webp"
   },
   {
     "id": "kch_titrationstool",
@@ -57,7 +57,7 @@
     ],
     "featured": true,
     "updated": "2026-07-31",
-    "thumb": ""
+    "thumb": "assets/thumbs/kch_spektral_lab.webp"
   },
   {
     "id": "kch_ki_strukturmodell_lab",
@@ -77,7 +77,7 @@
     ],
     "featured": true,
     "updated": "2026-07-28",
-    "thumb": ""
+    "thumb": "assets/thumbs/kch_ki_strukturmodellvergleich.webp"
   },
   {
     "id": "kch_destillationslabor",
@@ -97,7 +97,7 @@
     ],
     "featured": true,
     "updated": "2026-05-28",
-    "thumb": ""
+    "thumb": "assets/thums/kch_destillationslabor.webp"
   },
   {
     "id": "kch_mol_lab_didactic",
@@ -136,7 +136,7 @@
       "Modellierung"
     ],
     "featured": false,
-    "thumb": "",
+    "thumb": "assets/thums/kch_mol_lab_pro.webp",
     "updated": ""
   },
   {
@@ -236,7 +236,7 @@
       "Spiel"
     ],
     "featured": false,
-    "thumb": "",
+    "thumb": "assets/thumbs/kch_ionenfischen.webp",
     "updated": ""
   },
   {
