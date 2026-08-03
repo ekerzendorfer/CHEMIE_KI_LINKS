@@ -1,192 +1,648 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools Editor | Chemie KI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CHEMIE mit KI – Werkzeugdaten bearbeiten</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:rgba(255,255,255,.055);
+      --panel-strong:rgba(255,255,255,.075);
+      --text:rgba(255,255,255,.93);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.50);
+      --line:rgba(255,255,255,.13);
+      --accent:#7dd3fc;
+      --accent2:#a7f3d0;
+      --warm:#fbbf24;
+      --danger:#fda4af;
+      --radius:18px;
+      --shadow:0 10px 35px rgba(0,0,0,.34);
+      --max:1320px;
+      --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100vh;color:var(--text);font-family:var(--font);line-height:1.45;
+      background:
+        radial-gradient(1100px 600px at 10% -10%,rgba(125,211,252,.22),transparent 60%),
+        radial-gradient(900px 500px at 110% 0%,rgba(167,243,208,.16),transparent 55%),
+        radial-gradient(800px 600px at 50% 110%,rgba(251,191,36,.10),transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .wrap{max-width:var(--max);margin:0 auto;padding:26px 16px 50px}
+    header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:14px}
+    h1{font-size:clamp(25px,3.2vw,38px);line-height:1.08;letter-spacing:-.025em;margin:0}
+    .sub{margin-top:8px;color:var(--muted);max-width:800px}
+    .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .notice{padding:12px 14px;margin-bottom:14px;color:var(--muted);font-size:13px}
+    .notice strong{color:var(--text)}
+    .workspace{display:grid;grid-template-columns:minmax(270px,.8fr) minmax(0,2fr);gap:14px;align-items:start}
+    .sidebar{position:sticky;top:12px;overflow:hidden}
+    .side-head{padding:12px;border-bottom:1px solid var(--line)}
+    .side-head-row{display:flex;gap:8px;align-items:end}
+    .side-head-row > div{flex:1}
+    .tool-list{max-height:calc(100vh - 225px);overflow:auto;padding:8px}
+    .tool-row{
+      width:100%;display:block;text-align:left;color:var(--text);border:1px solid transparent;background:transparent;
+      border-radius:12px;padding:9px 10px;margin:2px 0;transition:background .15s,border-color .15s
+    }
+    .tool-row:hover{background:rgba(255,255,255,.065);border-color:rgba(255,255,255,.10)}
+    .tool-row.active{background:rgba(125,211,252,.12);border-color:rgba(125,211,252,.34)}
+    .tool-title{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:800;font-size:13px}
+    .tool-meta{display:block;margin-top:3px;color:var(--muted2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .star{color:#fde68a}
+    .editor{padding:15px}
+    .editor-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+    .editor-head h2{margin:0;font-size:18px}
+    .status{font-size:12px;color:var(--muted)}
+    .status.dirty{color:#fde68a}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .full{grid-column:1/-1}
+    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px 2px}
+    input,select,textarea{
+      width:100%;padding:10px 11px;border-radius:11px;border:1px solid rgba(255,255,255,.15);
+      background:rgba(0,0,0,.24);color:var(--text);outline:none
+    }
+    input:focus,select:focus,textarea:focus{border-color:rgba(125,211,252,.65);box-shadow:0 0 0 3px rgba(125,211,252,.12)}
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.38)}
+    select option{background:#111827;color:white}
+    textarea{min-height:92px;resize:vertical}
+    .help{margin-top:5px;color:var(--muted2);font-size:11px}
+    .checkline{display:flex;align-items:center;gap:9px;min-height:42px;padding-top:22px}
+    .checkline input{width:18px;height:18px;accent-color:var(--warm)}
+    .checkline label{margin:0;color:var(--text);font-size:13px}
+    .preview{
+      display:grid;grid-template-columns:190px 1fr;gap:12px;margin-top:14px;padding:12px;border:1px solid var(--line);
+      border-radius:14px;background:rgba(0,0,0,.16)
+    }
+    .preview-image{height:110px;border-radius:11px;overflow:hidden;position:relative;background:rgba(0,0,0,.24)}
+    .preview-image img{width:100%;height:100%;object-fit:contain;display:block}
+    .preview-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;color:var(--muted);font-weight:750;font-size:12px}
+    .preview h3{margin:0 0 5px;font-size:15px}
+    .preview p{margin:0;color:var(--muted);font-size:12px}
+    .preview-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .pill{border:1px solid var(--line);border-radius:999px;padding:3px 7px;font-size:10px;color:var(--muted)}
+    .pill.fresh{border-color:rgba(251,191,36,.4);color:#fde68a;background:rgba(251,191,36,.08)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}
+    .btn{
+      border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);text-decoration:none;
+      border-radius:11px;font-weight:760;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 12px
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.24)}
+    .btn.primary{background:linear-gradient(135deg,rgba(125,211,252,.18),rgba(167,243,208,.08));border-color:rgba(125,211,252,.34)}
+    .btn.warm{background:linear-gradient(135deg,rgba(251,191,36,.20),rgba(125,211,252,.07));border-color:rgba(251,191,36,.40)}
+    .btn.danger{color:#fecdd3;border-color:rgba(253,164,175,.28)}
+    .btn.small{padding:9px 10px;white-space:nowrap}
+    .file-input{display:none}
+    .message{display:none;margin-top:12px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);font-size:13px;white-space:pre-wrap}
+    .message.show{display:block}
+    .message.error{border-color:rgba(253,164,175,.4);background:rgba(253,164,175,.08);color:#fecdd3}
+    .message.ok{border-color:rgba(167,243,208,.34);background:rgba(167,243,208,.07);color:#d1fae5}
+    footer{margin-top:18px;color:var(--muted2);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @media(max-width:920px){
+      header{flex-direction:column}.top-actions{justify-content:flex-start}
+      .workspace{grid-template-columns:1fr}.sidebar{position:static}.tool-list{max-height:330px}
+    }
+    @media(max-width:620px){
+      .form-grid{grid-template-columns:1fr}.full{grid-column:auto}.preview{grid-template-columns:1fr}.preview-image{height:150px}
+      .side-head-row{align-items:stretch;flex-direction:column}.btn.small{width:100%}
+    }
+  </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen p-4">
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Werkzeugdaten bearbeiten</h1>
+        <div class="sub">Editor für <strong>data/tools.json</strong> des CHEMIE-mit-KI-Applikationsportals.</div>
+      </div>
+      <div class="top-actions">
+        <a class="btn" href="index.html">← Portal</a>
+        <button class="btn" id="btnReload" type="button">JSON neu laden</button>
+        <label class="btn" for="fileOpen">JSON-Datei öffnen</label>
+        <input class="file-input" id="fileOpen" type="file" accept="application/json,.json" />
+        <button class="btn warm" id="btnDownload" type="button">tools.json herunterladen</button>
+      </div>
+    </header>
 
-    <div class="max-w-6xl mx-auto">
-        <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <div>
-                <a href="index_CH_Links.html" class="text-blue-400 hover:text-blue-300 text-sm font-medium">← Zurück zum Hub</a>
-                <h1 class="text-2xl font-bold mt-1">Tools-Sammlung Manager</h1>
-            </div>
-            <div class="flex gap-3">
-                <input type="file" id="fileInput" accept=".json" class="hidden">
-                <button onclick="document.getElementById('fileInput').click()" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg transition text-sm">JSON laden</button>
-                <button onclick="downloadJSON()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition text-sm font-bold shadow-lg">JSON speichern</button>
-            </div>
-        </header>
-
-        <div id="formContainer" class="bg-slate-800 p-6 rounded-xl border border-slate-700 mb-8 shadow-xl transition-all">
-            <h2 id="formTitle" class="text-lg font-semibold mb-4 text-blue-400">Neues Tool hinzufügen</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input type="text" id="t_id" placeholder="ID (z.B. kch_neu)" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <input type="text" id="t_title" placeholder="Titel" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <input type="text" id="t_org" placeholder="Organisation / Autor" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <input type="text" id="t_url" placeholder="URL (Öffnen)" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <input type="text" id="t_repo" placeholder="Repo URL (optional)" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <input type="text" id="t_type" placeholder="Typ (z.B. Tool)" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <input type="text" id="t_cat" placeholder="Kategorie" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                <select id="t_level" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                    <option value="SEK1">SEK1</option>
-                    <option value="SEK2">SEK2</option>
-                    <option value="UNI">UNI</option>
-                </select>
-                <select id="t_lang" class="bg-slate-900 border-slate-700 border p-2 rounded">
-                    <option value="DE">DE</option>
-                    <option value="EN">EN</option>
-                </select>
-                <input type="text" id="t_tags" placeholder="Tags (mit Komma getrennt)" class="bg-slate-900 border-slate-700 border p-2 rounded md:col-span-2">
-                <div class="flex flex-col gap-2">
-                    <label class="text-xs text-slate-400">Bild (assets/thumbs/...)</label>
-                    <input type="file" id="t_thumb_file" accept="image/*" class="text-xs">
-                    <input type="hidden" id="t_thumb_existing">
-                </div>
-                <textarea id="t_desc" placeholder="Beschreibung" class="bg-slate-900 border-slate-700 border p-2 rounded md:col-span-3 h-20"></textarea>
-            </div>
-            <div class="flex gap-2 mt-6">
-                <button id="btnSubmit" onclick="saveTool()" class="flex-grow bg-blue-600 hover:bg-blue-500 py-3 rounded-lg font-bold transition text-white">Speichern / Hinzufügen</button>
-                <button id="btnCancel" onclick="resetForm()" class="hidden bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-bold transition">Abbrechen</button>
-            </div>
-        </div>
-
-        <div id="toolsList" class="space-y-4"></div>
+    <div class="panel notice">
+      <strong>Wichtig:</strong> Der Editor kann GitHub Pages nicht direkt beschreiben. Nach dem Bearbeiten wird eine neue <code>tools.json</code> heruntergeladen; diese ersetzt du anschließend im Repository im Ordner <code>data</code>. Vorschaubilder werden separat nach <code>assets/thumbs/</code> hochgeladen.
     </div>
 
-    <script>
-        let tools = [];
-        let editIndex = -1;
+    <main class="workspace">
+      <aside class="panel sidebar" aria-label="Werkzeugliste">
+        <div class="side-head">
+          <div class="side-head-row">
+            <div>
+              <label for="listSearch">Werkzeug suchen</label>
+              <input id="listSearch" type="search" placeholder="Titel oder Bereich …" autocomplete="off" />
+            </div>
+            <button class="btn primary small" id="btnNew" type="button">＋ Neu</button>
+          </div>
+        </div>
+        <div class="tool-list" id="toolList"></div>
+      </aside>
 
-        // Auto-Load
-        window.addEventListener('DOMContentLoaded', () => {
-            fetch('data/tools.json').then(r => r.json()).then(d => { tools = d; renderTools(); }).catch(e => console.log("Manuelles Laden nötig"));
-        });
+      <section class="panel editor" aria-label="Werkzeug bearbeiten">
+        <div class="editor-head">
+          <h2 id="formHeading">Eintrag auswählen</h2>
+          <span class="status" id="dirtyStatus">–</span>
+        </div>
 
-        // File Loading
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const reader = new FileReader();
-            reader.onload = (e) => { tools = JSON.parse(e.target.result); renderTools(); };
-            reader.readAsText(e.target.files[0]);
-        });
+        <form id="toolForm" novalidate>
+          <div class="form-grid">
+            <div>
+              <label for="fTitle">Titel *</label>
+              <input id="fTitle" required placeholder="z. B. MESSWERT_LAB" />
+            </div>
+            <div>
+              <label for="fId">ID *</label>
+              <input id="fId" required placeholder="kch_messwert_lab" />
+              <div class="help">Eindeutig, ohne Leerzeichen. Bestehende IDs möglichst nicht ändern.</div>
+            </div>
 
-        function renderTools() {
-            const container = document.getElementById('toolsList');
-            container.innerHTML = '';
-            tools.forEach((t, i) => {
-                const div = document.createElement('div');
-                div.className = "bg-slate-800 p-4 rounded-lg border border-slate-700 flex flex-col md:flex-row gap-4 items-start " + (editIndex === i ? 'ring-2 ring-blue-500' : '');
-                div.innerHTML = `
-                    <img src="${t.thumb}" class="w-32 h-20 object-cover rounded bg-black shadow-inner" onerror="this.src='https://via.placeholder.com/150?text=Bild+fehlt'">
-                    <div class="flex-grow grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-                        <div class="font-bold text-blue-400 col-span-2 text-base">${t.title} <span class="text-xs text-slate-500 font-normal">(${t.id})</span></div>
-                        <div class="text-slate-400">${t.type} | ${t.category}</div>
-                        <div class="text-right flex justify-end gap-2">
-                             <button onclick="move(${i}, -1)" class="bg-slate-700 p-1 rounded hover:bg-slate-600">▲</button>
-                             <button onclick="move(${i}, 1)" class="bg-slate-700 p-1 rounded hover:bg-slate-600">▼</button>
-                             <button onclick="prepareEdit(${i})" class="bg-amber-600 hover:bg-amber-500 text-white px-2 py-1 rounded text-xs font-bold">EDIT</button>
-                             <button onclick="remove(${i})" class="bg-red-900/50 hover:bg-red-600 text-red-200 px-2 py-1 rounded text-xs font-bold">X</button>
-                        </div>
-                        <div class="col-span-4 text-slate-300 italic text-xs">${t.desc}</div>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
-        }
+            <div class="full">
+              <label for="fDesc">Kurzbeschreibung *</label>
+              <textarea id="fDesc" required maxlength="360" placeholder="Ein prägnanter Satz zur Funktion und zum Unterrichtseinsatz."></textarea>
+              <div class="help"><span id="descCount">0</span>/360 Zeichen</div>
+            </div>
 
-        function prepareEdit(index) {
-            editIndex = index;
-            const t = tools[index];
-            
-            // Felder befüllen
-            document.getElementById('t_id').value = t.id;
-            document.getElementById('t_title').value = t.title;
-            document.getElementById('t_org').value = t.org;
-            document.getElementById('t_url').value = t.url;
-            document.getElementById('t_repo').value = t.repo || "";
-            document.getElementById('t_type').value = t.type;
-            document.getElementById('t_cat').value = t.category;
-            document.getElementById('t_level').value = t.level;
-            document.getElementById('t_lang').value = t.lang;
-            document.getElementById('t_tags').value = (t.tags || []).join(', ');
-            document.getElementById('t_desc').value = t.desc;
-            document.getElementById('t_thumb_existing').value = t.thumb;
+            <div>
+              <label for="fUrl">Start-URL *</label>
+              <input id="fUrl" type="url" required placeholder="https://ekerzendorfer.github.io/…/" />
+            </div>
+            <div>
+              <label for="fRepo">Repository-URL</label>
+              <input id="fRepo" type="url" placeholder="https://github.com/ekerzendorfer/…" />
+            </div>
 
-            // UI anpassen
-            document.getElementById('formTitle').innerText = "Tool bearbeiten: " + t.title;
-            document.getElementById('formContainer').classList.replace('border-slate-700', 'border-amber-500');
-            document.getElementById('btnSubmit').innerText = "Änderungen übernehmen";
-            document.getElementById('btnSubmit').classList.replace('bg-blue-600', 'bg-amber-600');
-            document.getElementById('btnCancel').classList.remove('hidden');
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            renderTools();
-        }
+            <div>
+              <label for="fCategory">Bereich *</label>
+              <select id="fCategory" required>
+                <option value="Grundlagen & Üben">Grundlagen &amp; Üben</option>
+                <option value="Virtuelle Labore & Messdaten">Virtuelle Labore &amp; Messdaten</option>
+                <option value="Moleküle & Struktur">Moleküle &amp; Struktur</option>
+                <option value="Biochemie & Proteine">Biochemie &amp; Proteine</option>
+                <option value="Begleitung & Material">Begleitung &amp; Material</option>
+              </select>
+            </div>
+            <div>
+              <label for="fLevel">Schulstufe *</label>
+              <select id="fLevel" required>
+                <option value="SEK1">SEK I</option>
+                <option value="SEK2">SEK II</option>
+                <option value="SEK1/SEK2">SEK I–II</option>
+              </select>
+            </div>
 
-        function saveTool() {
-            const thumbFile = document.getElementById('t_thumb_file').files[0];
-            let thumbPath = document.getElementById('t_thumb_existing').value || "assets/thumbs/default.webp";
-            
-            if (thumbFile) {
-                thumbPath = `assets/thumbs/${thumbFile.name}`;
-            }
-            
-            const toolData = {
-                id: document.getElementById('t_id').value,
-                title: document.getElementById('t_title').value,
-                org: document.getElementById('t_org').value,
-                url: document.getElementById('t_url').value,
-                repo: document.getElementById('t_repo').value,
-                type: document.getElementById('t_type').value,
-                category: document.getElementById('t_cat').value,
-                level: document.getElementById('t_level').value,
-                lang: document.getElementById('t_lang').value,
-                desc: document.getElementById('t_desc').value,
-                tags: document.getElementById('t_tags').value.split(',').map(s => s.trim()).filter(s => s !== ""),
-                thumb: thumbPath
-            };
+            <div>
+              <label for="fType">Eintragstyp</label>
+              <select id="fType">
+                <option value="Tool">Tool</option>
+                <option value="Kurs">Kurs / Begleitangebot</option>
+              </select>
+            </div>
+            <div>
+              <label for="fTags">Suchstichwörter</label>
+              <input id="fTags" placeholder="Titration, Säure-Base, Simulation" />
+              <div class="help">Maximal drei Begriffe, durch Kommas getrennt.</div>
+            </div>
 
-            if(editIndex > -1) {
-                tools[editIndex] = toolData;
-            } else {
-                tools.unshift(toolData);
-            }
-            
-            resetForm();
-            renderTools();
-        }
+            <div>
+              <label for="fThumb">Thumbnail-Pfad</label>
+              <input id="fThumb" placeholder="assets/thumbs/kch_beispiel.webp" />
+              <div class="help">Die Bilddatei muss zusätzlich in <code>assets/thumbs/</code> liegen.</div>
+            </div>
+            <div>
+              <label for="fUpdated">Letzte relevante Aktualisierung</label>
+              <input id="fUpdated" type="date" />
+              <div class="help">Optional; bestimmt die Reihenfolge unter „Neu &amp; aktuell“.</div>
+            </div>
 
-        function resetForm() {
-            editIndex = -1;
-            document.getElementById('formTitle').innerText = "Neues Tool hinzufügen";
-            document.getElementById('formContainer').classList.replace('border-amber-500', 'border-slate-700');
-            document.getElementById('btnSubmit').innerText = "Tool zur Liste hinzufügen";
-            document.getElementById('btnSubmit').classList.replace('bg-amber-600', 'bg-blue-600');
-            document.getElementById('btnCancel').classList.add('hidden');
-            
-            // Alle Felder leeren
-            ['t_id', 't_title', 't_org', 't_url', 't_repo', 't_type', 't_cat', 't_tags', 't_desc', 't_thumb_existing'].forEach(id => {
-                document.getElementById(id).value = "";
-            });
-            document.getElementById('t_thumb_file').value = "";
-            renderTools();
-        }
+            <div class="checkline full">
+              <input id="fFeatured" type="checkbox" />
+              <label for="fFeatured"><strong>Unter „NEU &amp; AKTUELL“ anzeigen</strong></label>
+            </div>
+          </div>
 
-        function remove(i) { if(confirm("Dieses Tool wirklich löschen?")) { tools.splice(i, 1); renderTools(); } }
-        
-        function move(i, dir) {
-            let n = i + dir;
-            if(n >= 0 && n < tools.length) { [tools[i], tools[n]] = [tools[n], tools[i]]; renderTools(); }
-        }
+          <div class="preview" aria-label="Vorschau">
+            <div class="preview-image">
+              <img id="previewImg" alt="Thumbnail-Vorschau" hidden />
+              <div class="preview-fallback" id="previewFallback">Noch kein Vorschaubild eingetragen</div>
+            </div>
+            <div>
+              <h3 id="previewTitle">Werkzeugtitel</h3>
+              <p id="previewDesc">Kurzbeschreibung</p>
+              <div class="preview-tags" id="previewTags"></div>
+            </div>
+          </div>
 
-        function downloadJSON() {
-            const data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tools, null, 2));
-            const a = document.createElement('a');
-            a.href = data; a.download = "tools.json"; a.click();
-        }
-    </script>
+          <div class="actions">
+            <button class="btn primary" id="btnApply" type="submit">Änderungen übernehmen</button>
+            <button class="btn" id="btnUp" type="button">↑ Nach oben</button>
+            <button class="btn" id="btnDown" type="button">↓ Nach unten</button>
+            <button class="btn" id="btnDuplicate" type="button">Duplizieren</button>
+            <button class="btn danger" id="btnDelete" type="button">Löschen</button>
+          </div>
+        </form>
+        <div class="message" id="message" role="status"></div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Lokaler Pflegeeditor – keine direkte Speicherung auf GitHub.</span>
+      <span id="countInfo">0 Einträge</span>
+    </footer>
+  </div>
+
+<script>
+  "use strict";
+
+  const DATA_URL = "data/tools.json";
+  const CATEGORIES = [
+    "Grundlagen & Üben",
+    "Virtuelle Labore & Messdaten",
+    "Moleküle & Struktur",
+    "Biochemie & Proteine",
+    "Begleitung & Material"
+  ];
+
+  let tools = [];
+  let selectedIndex = -1;
+  let dirty = false;
+  let formDirty = false;
+  let creatingNew = false;
+  let idWasEdited = false;
+
+  const $ = (id) => document.getElementById(id);
+
+  function escapeHtml(value) {
+    return (value ?? "").toString()
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function slugify(value) {
+    return (value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ß/g, "ss")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 55);
+  }
+
+  function setMessage(text, kind = "ok") {
+    const box = $("message");
+    box.textContent = text || "";
+    box.className = `message${text ? ` show ${kind}` : ""}`;
+  }
+
+  function setDirty(value = true) {
+    dirty = value;
+    const status = $("dirtyStatus");
+    status.textContent = dirty ? "Änderungen noch nicht heruntergeladen" : "Datenstand geladen";
+    status.classList.toggle("dirty", dirty);
+  }
+
+  function normalizeTool(raw = {}) {
+    const item = { ...raw };
+    item.id = (item.id || "").toString();
+    item.title = (item.title || "").toString();
+    item.org = item.org || "Erich Kerzendorfer";
+    item.url = (item.url || "").toString();
+    item.repo = (item.repo || "").toString();
+    item.type = item.type === "Kurs" ? "Kurs" : "Tool";
+    item.category = CATEGORIES.includes(item.category) ? item.category : CATEGORIES[0];
+    item.level = ["SEK1", "SEK2", "SEK1/SEK2"].includes(item.level) ? item.level : "SEK2";
+    item.lang = item.lang || "DE";
+    item.desc = (item.desc || "").toString();
+    item.tags = Array.isArray(item.tags) ? item.tags.slice(0, 3).map(String) : [];
+    item.thumb = (item.thumb || "").toString();
+    item.featured = item.featured === true;
+    item.updated = (item.updated || "").toString();
+    return item;
+  }
+
+  function renderList() {
+    const query = $("listSearch").value.trim().toLowerCase();
+    const list = $("toolList");
+    const rows = tools.map((item, index) => ({ item, index })).filter(({ item }) => {
+      const haystack = `${item.title} ${item.category} ${(item.tags || []).join(" ")}`.toLowerCase();
+      return !query || haystack.includes(query);
+    });
+
+    list.innerHTML = rows.length ? rows.map(({ item, index }) => `
+      <button class="tool-row${index === selectedIndex ? " active" : ""}" type="button" data-index="${index}">
+        <span class="tool-title"><span>${escapeHtml(item.title || "Ohne Titel")}</span>${item.featured ? '<span class="star" title="Neu & aktuell">★</span>' : ""}</span>
+        <span class="tool-meta">${escapeHtml(item.category)} · ${escapeHtml(item.level.replace("SEK1/SEK2", "SEK I–II").replace("SEK1", "SEK I").replace("SEK2", "SEK II"))}</span>
+      </button>`).join("") : '<div class="tool-meta" style="padding:12px">Keine passenden Einträge.</div>';
+
+    list.querySelectorAll(".tool-row").forEach((button) => {
+      button.addEventListener("click", () => selectTool(Number(button.dataset.index)));
+    });
+    $("countInfo").textContent = `${tools.length} Einträge`;
+  }
+
+  function selectTool(index) {
+    if (index < 0 || index >= tools.length) return;
+    if (formDirty && (selectedIndex >= 0 || creatingNew)) {
+      if (!applyForm()) return;
+    }
+    selectedIndex = index;
+    creatingNew = false;
+    idWasEdited = true;
+    fillForm(tools[index]);
+    renderList();
+    setMessage("");
+  }
+
+  function fillForm(item) {
+    $("fTitle").value = item.title || "";
+    $("fId").value = item.id || "";
+    $("fDesc").value = item.desc || "";
+    $("fUrl").value = item.url || "";
+    $("fRepo").value = item.repo || "";
+    $("fCategory").value = CATEGORIES.includes(item.category) ? item.category : CATEGORIES[0];
+    $("fLevel").value = ["SEK1", "SEK2", "SEK1/SEK2"].includes(item.level) ? item.level : "SEK2";
+    $("fType").value = item.type === "Kurs" ? "Kurs" : "Tool";
+    $("fTags").value = (item.tags || []).join(", ");
+    $("fThumb").value = item.thumb || "";
+    $("fUpdated").value = item.updated || "";
+    $("fFeatured").checked = item.featured === true;
+    $("formHeading").textContent = creatingNew ? "Neuen Eintrag anlegen" : (item.title || "Eintrag bearbeiten");
+    updatePreview();
+    formDirty = false;
+  }
+
+  function collectForm(existing = {}) {
+    const tags = $("fTags").value.split(",").map((tag) => tag.trim()).filter(Boolean).slice(0, 3);
+    const item = {
+      ...existing,
+      id: $("fId").value.trim(),
+      title: $("fTitle").value.trim(),
+      org: existing.org || "Erich Kerzendorfer",
+      url: $("fUrl").value.trim(),
+      repo: $("fRepo").value.trim(),
+      type: $("fType").value,
+      category: $("fCategory").value,
+      level: $("fLevel").value,
+      lang: existing.lang || "DE",
+      desc: $("fDesc").value.trim(),
+      tags,
+      featured: $("fFeatured").checked
+    };
+    const thumb = $("fThumb").value.trim();
+    const updated = $("fUpdated").value;
+    if (thumb) item.thumb = thumb; else delete item.thumb;
+    if (updated) item.updated = updated; else delete item.updated;
+    return item;
+  }
+
+  function validateItem(item, currentIndex) {
+    const errors = [];
+    if (!item.title) errors.push("Titel fehlt.");
+    if (!item.id) errors.push("ID fehlt.");
+    if (!/^[a-z0-9_-]+$/i.test(item.id)) errors.push("Die ID darf nur Buchstaben, Zahlen, Unterstriche und Bindestriche enthalten.");
+    if (tools.some((tool, index) => index !== currentIndex && tool.id === item.id)) errors.push("Diese ID ist bereits vergeben.");
+    if (!item.desc) errors.push("Kurzbeschreibung fehlt.");
+    if (!item.url) errors.push("Start-URL fehlt.");
+    try { if (item.url) new URL(item.url); } catch { errors.push("Start-URL ist ungültig."); }
+    try { if (item.repo) new URL(item.repo); } catch { errors.push("Repository-URL ist ungültig."); }
+    if (item.featured && !item.updated) errors.push("Für „Neu & aktuell“ sollte ein Aktualisierungsdatum eingetragen werden.");
+    return errors;
+  }
+
+  function applyForm(event) {
+    event?.preventDefault();
+    const existing = selectedIndex >= 0 && !creatingNew ? tools[selectedIndex] : {};
+    const item = collectForm(existing);
+    const targetIndex = creatingNew ? tools.length : selectedIndex;
+    const errors = validateItem(item, targetIndex);
+    if (errors.length) {
+      setMessage(errors.join("\n"), "error");
+      return false;
+    }
+
+    if (creatingNew || selectedIndex < 0) {
+      tools.push(item);
+      selectedIndex = tools.length - 1;
+      creatingNew = false;
+    } else {
+      tools[selectedIndex] = item;
+    }
+    idWasEdited = true;
+    formDirty = false;
+    setDirty(true);
+    renderList();
+    fillForm(tools[selectedIndex]);
+    setMessage("Änderung übernommen. Zum Abschluss tools.json herunterladen.", "ok");
+    return true;
+  }
+
+  function newTool() {
+    if (formDirty && (selectedIndex >= 0 || creatingNew)) {
+      if (!applyForm()) return;
+    }
+    selectedIndex = -1;
+    creatingNew = true;
+    idWasEdited = false;
+    fillForm(normalizeTool({ category: CATEGORIES[0], level: "SEK2", type: "Tool" }));
+    renderList();
+    $("fTitle").focus();
+    setMessage("Neuen Eintrag ausfüllen und mit „Änderungen übernehmen“ hinzufügen.", "ok");
+  }
+
+  function duplicateTool() {
+    if (formDirty && !applyForm()) return;
+    if (selectedIndex < 0) return;
+    const source = tools[selectedIndex];
+    const copy = normalizeTool({
+      ...source,
+      id: `${source.id}_kopie`,
+      title: `${source.title} – KOPIE`,
+      featured: false,
+      updated: ""
+    });
+    tools.splice(selectedIndex + 1, 0, copy);
+    selectedIndex += 1;
+    setDirty(true);
+    selectTool(selectedIndex);
+    setMessage("Eintrag dupliziert. Bitte ID, Titel und Links anpassen.", "ok");
+  }
+
+  function deleteTool() {
+    if (formDirty && !applyForm()) return;
+    if (selectedIndex < 0) return;
+    const title = tools[selectedIndex].title || "diesen Eintrag";
+    if (!confirm(`„${title}“ wirklich löschen?`)) return;
+    tools.splice(selectedIndex, 1);
+    setDirty(true);
+    selectedIndex = Math.min(selectedIndex, tools.length - 1);
+    if (selectedIndex >= 0) selectTool(selectedIndex); else newTool();
+    renderList();
+    setMessage("Eintrag gelöscht. Die Änderung wird erst mit der heruntergeladenen JSON-Datei wirksam.", "ok");
+  }
+
+  function moveTool(direction) {
+    if (formDirty && !applyForm()) return;
+    if (selectedIndex < 0) return;
+    const next = selectedIndex + direction;
+    if (next < 0 || next >= tools.length) return;
+    [tools[selectedIndex], tools[next]] = [tools[next], tools[selectedIndex]];
+    selectedIndex = next;
+    setDirty(true);
+    renderList();
+    setMessage(direction < 0 ? "Eintrag nach oben verschoben." : "Eintrag nach unten verschoben.", "ok");
+  }
+
+  function updatePreview() {
+    const title = $("fTitle").value.trim() || "Werkzeugtitel";
+    const desc = $("fDesc").value.trim() || "Kurzbeschreibung";
+    const thumb = $("fThumb").value.trim();
+    const tags = $("fTags").value.split(",").map((tag) => tag.trim()).filter(Boolean).slice(0, 3);
+    const level = $("fLevel").value.replace("SEK1/SEK2", "SEK I–II").replace("SEK1", "SEK I").replace("SEK2", "SEK II");
+
+    $("previewTitle").textContent = title;
+    $("previewDesc").textContent = desc;
+    $("descCount").textContent = $("fDesc").value.length;
+    $("previewTags").innerHTML = [
+      `<span class="pill">${escapeHtml(level)}</span>`,
+      ...tags.map((tag) => `<span class="pill">${escapeHtml(tag)}</span>`),
+      ...($("fFeatured").checked ? ['<span class="pill fresh">NEU & AKTUELL</span>'] : [])
+    ].join("");
+
+    const img = $("previewImg");
+    const fallback = $("previewFallback");
+    if (thumb) {
+      img.hidden = false;
+      fallback.hidden = true;
+      img.onerror = () => {
+        img.hidden = true;
+        fallback.hidden = false;
+        fallback.textContent = "Bildpfad derzeit nicht erreichbar";
+      };
+      img.onload = () => {
+        img.hidden = false;
+        fallback.hidden = true;
+      };
+      img.src = `${thumb}${thumb.includes("?") ? "&" : "?"}preview=${Date.now()}`;
+    } else {
+      img.hidden = true;
+      img.removeAttribute("src");
+      fallback.hidden = false;
+      fallback.textContent = "Noch kein Vorschaubild eingetragen";
+    }
+  }
+
+  function downloadJson() {
+    if (creatingNew && $("fTitle").value.trim()) {
+      if (!applyForm()) return;
+    } else if (selectedIndex >= 0) {
+      const pending = collectForm(tools[selectedIndex]);
+      if (JSON.stringify(pending) !== JSON.stringify(tools[selectedIndex])) {
+        if (!applyForm()) return;
+      }
+    }
+    const content = JSON.stringify(tools, null, 2) + "\n";
+    const blob = new Blob([content], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "tools.json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    formDirty = false;
+    setDirty(false);
+    setMessage("tools.json wurde heruntergeladen. Ersetze damit im Repository die Datei data/tools.json.", "ok");
+  }
+
+  function loadData(data, sourceLabel) {
+    if (!Array.isArray(data)) throw new Error("Die JSON-Datei enthält keine Liste.");
+    tools = data.map(normalizeTool);
+    selectedIndex = tools.length ? 0 : -1;
+    creatingNew = false;
+    formDirty = false;
+    idWasEdited = true;
+    setDirty(false);
+    renderList();
+    if (selectedIndex >= 0) selectTool(selectedIndex); else newTool();
+    setMessage(`${tools.length} Einträge aus ${sourceLabel} geladen.`, "ok");
+  }
+
+  async function reloadFromServer(force = false) {
+    if (dirty && !force && !confirm("Nicht heruntergeladene Änderungen verwerfen und JSON neu laden?")) return;
+    try {
+      const response = await fetch(DATA_URL, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      loadData(await response.json(), DATA_URL);
+    } catch (error) {
+      setMessage(`data/tools.json konnte nicht geladen werden (${error.message}).\nÖffne die Datei über „JSON-Datei öffnen“.`, "error");
+      tools = [];
+      selectedIndex = -1;
+      renderList();
+      newTool();
+    }
+  }
+
+  async function openFile(file) {
+    if (!file) return;
+    if (dirty && !confirm("Nicht heruntergeladene Änderungen verwerfen und gewählte Datei öffnen?")) {
+      $("fileOpen").value = "";
+      return;
+    }
+    try {
+      const text = await file.text();
+      loadData(JSON.parse(text), file.name);
+    } catch (error) {
+      setMessage(`Datei konnte nicht geöffnet werden: ${error.message}`, "error");
+    } finally {
+      $("fileOpen").value = "";
+    }
+  }
+
+  $("toolForm").addEventListener("submit", applyForm);
+  $("btnNew").addEventListener("click", newTool);
+  $("btnDuplicate").addEventListener("click", duplicateTool);
+  $("btnDelete").addEventListener("click", deleteTool);
+  $("btnUp").addEventListener("click", () => moveTool(-1));
+  $("btnDown").addEventListener("click", () => moveTool(1));
+  $("btnDownload").addEventListener("click", downloadJson);
+  $("btnReload").addEventListener("click", () => reloadFromServer(false));
+  $("fileOpen").addEventListener("change", (event) => openFile(event.target.files?.[0]));
+  $("listSearch").addEventListener("input", renderList);
+
+  ["fTitle", "fDesc", "fUrl", "fRepo", "fTags", "fThumb", "fUpdated"].forEach((id) => {
+    $(id).addEventListener("input", () => {
+      if (id === "fTitle" && creatingNew && !idWasEdited) $("fId").value = `kch_${slugify($("fTitle").value)}`;
+      formDirty = true;
+      setDirty(true);
+      updatePreview();
+    });
+  });
+  ["fCategory", "fLevel", "fType", "fFeatured"].forEach((id) => $(id).addEventListener("change", () => { formDirty = true; setDirty(true); updatePreview(); }));
+  $("fId").addEventListener("input", () => { idWasEdited = true; formDirty = true; setDirty(true); });
+
+  window.addEventListener("beforeunload", (event) => {
+    if (!dirty) return;
+    event.preventDefault();
+    event.returnValue = "";
+  });
+
+  reloadFromServer(true);
+</script>
 </body>
 </html>

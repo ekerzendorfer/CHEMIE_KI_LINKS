@@ -10,7 +10,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Schulische Messdaten aus Photometrie, Kinetik, Säure-Base-Gleichgewichten und Titrationen importieren, auswerten und exportieren.",
-    "tags": ["Messdaten", "Auswertung", "CSV"]
+    "tags": [
+      "Messdaten",
+      "Auswertung",
+      "CSV"
+    ],
+    "featured": true,
+    "updated": "2026-08-03"
   },
   {
     "id": "kch_titrationstool",
@@ -23,8 +29,14 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Virtuelles Titrationslabor mit realitätsnaher Apparatur, Titrationskurven, Äquivalenzpunktbestimmung und Datenexport.",
-    "tags": ["Titration", "Säure-Base", "Simulation"],
-    "thumb": "assets/thumbs/kch_titrationstool.webp"
+    "tags": [
+      "Titration",
+      "Säure-Base",
+      "Simulation"
+    ],
+    "thumb": "assets/thumbs/kch_titrationstool.webp",
+    "featured": true,
+    "updated": "2026-08-02"
   },
   {
     "id": "kch_virtuelles_photometer",
@@ -37,7 +49,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "UV/Vis-Spektren, Eichkurven, chemische Gleichgewichte und Reaktionskinetik in einem virtuellen Spektralphotometer untersuchen.",
-    "tags": ["Photometrie", "Spektren", "Kinetik"]
+    "tags": [
+      "Photometrie",
+      "Spektren",
+      "Kinetik"
+    ],
+    "featured": true,
+    "updated": "2026-07-31"
   },
   {
     "id": "kch_ki_strukturmodell_lab",
@@ -50,7 +68,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Experimentelle Proteinstrukturen und KI-Modelle vergleichen sowie Zustände, Liganden, Ionen und Modellgrenzen untersuchen.",
-    "tags": ["Proteinstruktur", "AlphaFold", "KI"]
+    "tags": [
+      "Proteinstruktur",
+      "AlphaFold",
+      "KI"
+    ],
+    "featured": true,
+    "updated": "2026-07-28"
   },
   {
     "id": "kch_destillationslabor",
@@ -63,7 +87,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Einfache und fraktionierte Destillation verschiedener Lösungsmittelgemische simulieren und den Trennverlauf auswerten.",
-    "tags": ["Destillation", "Stofftrennung", "Simulation"]
+    "tags": [
+      "Destillation",
+      "Stofftrennung",
+      "Simulation"
+    ],
+    "featured": true,
+    "updated": "2026-05-28"
   },
   {
     "id": "kch_mol_lab_didactic",
@@ -76,7 +106,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Didaktisch kuratierte Molekülwerkstatt zu Geometrie, Polarität, Löslichkeit, Isomerie, Konformeren und funktionellen Gruppen.",
-    "tags": ["Moleküle", "Struktur-Eigenschaft", "Colab"]
+    "tags": [
+      "Moleküle",
+      "Struktur-Eigenschaft",
+      "Colab"
+    ],
+    "featured": true,
+    "updated": "2026-07-28"
   },
   {
     "id": "kch_mollab_pro",
@@ -89,7 +125,12 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Molekülgeometrie vom 2D-Entwurf bis zum quantenchemisch optimierten 3D-Modell erkunden.",
-    "tags": ["Molekülgeometrie", "3D", "Modellierung"]
+    "tags": [
+      "Molekülgeometrie",
+      "3D",
+      "Modellierung"
+    ],
+    "featured": false
   },
   {
     "id": "kch_mol_lab",
@@ -102,8 +143,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Moleküle aus SMILES erzeugen, in 2D und 3D darstellen, optimieren, analysieren und exportieren.",
-    "tags": ["Moleküle", "3D", "RDKit"],
-    "thumb": "assets/thumbs/kch_mol_lab.webp"
+    "tags": [
+      "Moleküle",
+      "3D",
+      "RDKit"
+    ],
+    "thumb": "assets/thumbs/kch_mol_lab.webp",
+    "featured": false
   },
   {
     "id": "kch_mol_lab_tasks",
@@ -116,8 +162,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Interaktive Aufgaben und Arbeitsaufträge zur Molekülforschung mit MOL_LAB.",
-    "tags": ["Moleküle", "Aufgaben", "Struktur"],
-    "thumb": "assets/thumbs/kch_mol_lab_tasks.webp"
+    "tags": [
+      "Moleküle",
+      "Aufgaben",
+      "Struktur"
+    ],
+    "thumb": "assets/thumbs/kch_mol_lab_tasks.webp",
+    "featured": false
   },
   {
     "id": "kch_proteinlabor",
@@ -130,8 +181,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Vom genetischen Code über Proteinvorhersage und Strukturvergleich bis zur Untersuchung eines Protein-Ligand-Komplexes.",
-    "tags": ["Proteine", "ColabFold", "Docking"],
-    "thumb": "assets/thumbs/kch_proteinlabor.webp"
+    "tags": [
+      "Proteine",
+      "ColabFold",
+      "Docking"
+    ],
+    "thumb": "assets/thumbs/kch_proteinlabor.webp",
+    "featured": false
   },
   {
     "id": "kch_genlab",
@@ -144,8 +200,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Den Weg von DNA und genetischem Code über Transkription und Translation bis zur Aminosäuresequenz nachvollziehen.",
-    "tags": ["Genetik", "Proteine", "Translation"],
-    "thumb": "assets/thumbs/kch_genlab.webp"
+    "tags": [
+      "Genetik",
+      "Proteine",
+      "Translation"
+    ],
+    "thumb": "assets/thumbs/kch_genlab.webp",
+    "featured": false
   },
   {
     "id": "kch_ionenfischen",
@@ -158,7 +219,12 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Spielerisches Üben von Ionen, Ladungen und passenden Kombinationen in einem virtuellen Ionenfangspiel.",
-    "tags": ["Ionen", "Ladungen", "Spiel"]
+    "tags": [
+      "Ionen",
+      "Ladungen",
+      "Spiel"
+    ],
+    "featured": false
   },
   {
     "id": "kch_chemsnake",
@@ -171,7 +237,12 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Chemische Fragestellungen in einem motivierenden Snake-Spiel wiederholen und festigen.",
-    "tags": ["Quiz", "Spiel", "Wiederholen"]
+    "tags": [
+      "Quiz",
+      "Spiel",
+      "Wiederholen"
+    ],
+    "featured": false
   },
   {
     "id": "kch_redoxcoach",
@@ -184,8 +255,13 @@
     "level": "SEK2",
     "lang": "DE",
     "desc": "Redoxgleichungen im sauren Milieu schrittweise über Oxidationszahlen, Teilreaktionen, Elektronen- und Ladungsausgleich lösen.",
-    "tags": ["Redox", "Oxidationszahlen", "Üben"],
-    "thumb": "assets/thumbs/kch_redoxcoach.webp"
+    "tags": [
+      "Redox",
+      "Oxidationszahlen",
+      "Üben"
+    ],
+    "thumb": "assets/thumbs/kch_redoxcoach.webp",
+    "featured": false
   },
   {
     "id": "kch_periodensystem",
@@ -198,8 +274,13 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Elemente, Symbole, Namen, Gruppen und Perioden im interaktiven Periodensystem erkunden und üben.",
-    "tags": ["Periodensystem", "Elemente", "Üben"],
-    "thumb": "assets/thumbs/kch_periodensystem.webp"
+    "tags": [
+      "Periodensystem",
+      "Elemente",
+      "Üben"
+    ],
+    "thumb": "assets/thumbs/kch_periodensystem.webp",
+    "featured": false
   },
   {
     "id": "kch_stoechiometriemeister",
@@ -212,8 +293,13 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Stoffmengen, molare Massen, Massen und Reaktionsumsätze berechnen und interaktiv üben.",
-    "tags": ["Stöchiometrie", "Stoffmenge", "Berechnen"],
-    "thumb": "assets/thumbs/kch_stoechiometriemeister.webp"
+    "tags": [
+      "Stöchiometrie",
+      "Stoffmenge",
+      "Berechnen"
+    ],
+    "thumb": "assets/thumbs/kch_stoechiometriemeister.webp",
+    "featured": false
   },
   {
     "id": "kch_gleichungstrainer",
@@ -226,8 +312,13 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Mehr als 100 Reaktionsgleichungen aus anorganischer und organischer Chemie mit passenden Koeffizienten ausgleichen.",
-    "tags": ["Reaktionsgleichungen", "Koeffizienten", "Üben"],
-    "thumb": "assets/thumbs/kch_gleichungstrainer.webp"
+    "tags": [
+      "Reaktionsgleichungen",
+      "Koeffizienten",
+      "Üben"
+    ],
+    "thumb": "assets/thumbs/kch_gleichungstrainer.webp",
+    "featured": false
   },
   {
     "id": "kch_salzformeln",
@@ -240,8 +331,13 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Aus Salznamen korrekte Verhältnisformeln mit Indizes und Klammern entwickeln.",
-    "tags": ["Salze", "Verhältnisformeln", "Ionen"],
-    "thumb": "assets/thumbs/kch_salzformeln.webp"
+    "tags": [
+      "Salze",
+      "Verhältnisformeln",
+      "Ionen"
+    ],
+    "thumb": "assets/thumbs/kch_salzformeln.webp",
+    "featured": false
   },
   {
     "id": "kch_salzbenennung",
@@ -254,8 +350,13 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Salzformeln lesen, enthaltene Ionen bestimmen und anorganische Salze korrekt benennen.",
-    "tags": ["Salze", "Nomenklatur", "Ionen"],
-    "thumb": "assets/thumbs/kch_salzbenennung.webp"
+    "tags": [
+      "Salze",
+      "Nomenklatur",
+      "Ionen"
+    ],
+    "thumb": "assets/thumbs/kch_salzbenennung.webp",
+    "featured": false
   },
   {
     "id": "kch_onlinekurs",
@@ -268,7 +369,12 @@
     "level": "SEK1/SEK2",
     "lang": "DE",
     "desc": "Begleitender Onlinekurs zu KI-Anwendungen, eigenen Assistenzsystemen, Moleküllaboren und digitalen Werkzeugen im Chemieunterricht.",
-    "tags": ["Onlinekurs", "Anleitungen", "Unterricht"],
-    "thumb": "assets/thumbs/kch_onlinekurs.webp"
+    "tags": [
+      "Onlinekurs",
+      "Anleitungen",
+      "Unterricht"
+    ],
+    "thumb": "assets/thumbs/kch_onlinekurs.webp",
+    "featured": false
   }
 ]
