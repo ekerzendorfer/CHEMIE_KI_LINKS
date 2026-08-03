@@ -17,7 +17,7 @@
     ],
     "featured": true,
     "updated": "2026-08-03",
-    "thumb": "assets/thums/kch_daten_lab.webp"
+    "thumb": "assets/thumbs/kch_daten_lab.webp"
   },
   {
     "id": "kch_titrationstool",
@@ -97,7 +97,7 @@
     ],
     "featured": true,
     "updated": "2026-05-28",
-    "thumb": "assets/thums/kch_destillationslabor.webp"
+    "thumb": "assets/thumbs/kch_destillationslabor.webp"
   },
   {
     "id": "kch_mol_lab_didactic",
@@ -136,7 +136,7 @@
       "Modellierung"
     ],
     "featured": false,
-    "thumb": "assets/thums/kch_mol_lab_pro.webp",
+    "thumb": "assets/thumbs/kch_mol_lab_pro.webp",
     "updated": ""
   },
   {
