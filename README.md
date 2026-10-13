@@ -1,6 +1,6 @@
-# CHEMIE_KI_LINKS – Version 1.3.0
+# CHEMIE_KI_LINKS – Version 1.4.0
 
-Stand: 3. August 2026
+Stand: 13. Oktober 2026
 
 ## Enthaltene Ersatzdateien
 
@@ -15,6 +15,24 @@ Stand: 3. August 2026
 3. Im Ordner `data` die bestehende `tools.json` ersetzen.
 4. Die vorhandenen Thumbnail-Dateien unter `assets/thumbs/` unverändert lassen.
 5. Änderungen committen und GitHub Pages anschließend mit `Strg + F5` neu laden.
+
+## Neu in Version 1.4.0
+
+### Digitales Analytiklabor als Leitprojekt
+
+Das **Digitale Analytiklabor** wird auf der Startseite bewusst außerhalb der normalen Werkzeugkacheln hervorgehoben.
+
+- kompakte gemeinsame Einstiegszeile direkt unter dem Kopfbereich
+- links: Prozessgrafik „Unbekannte Probe → Trennen → Analysieren → Beweiskette“
+- direkter Einstieg in den Analytik-Hub
+- zusätzlicher Link zur Konzeptseite im Onlinekurs
+- rechts: kompakterer Bereichsfilter mit kleineren Schaltflächen
+- auf schmalen Bildschirmen stapeln sich Leitprojekt und Bereiche responsiv untereinander
+
+Grafik:
+`assets/featured/analytiklabor_spotlight.webp`
+
+Das Analytiklabor bleibt damit als vernetztes Gesamtsystem sichtbar, ohne als weitere Einzelkachel in der Werkzeugliste unterzugehen.
 
 ## Neu in Version 1.3.0
 
