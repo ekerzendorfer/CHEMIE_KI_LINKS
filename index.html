@@ -63,12 +63,50 @@
     .btn:hover,.link:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24)}
     .btn:active,.link:active{transform:translateY(1px)}
     .btn.primary{background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(125,211,252,.10));border-color:rgba(251,191,36,.42)}
-    .category-panel{margin-bottom:12px}
-    .category-label{display:block;font-size:12px;color:var(--muted);margin:0 0 8px 2px}
-    .category-buttons{display:flex;flex-wrap:wrap;gap:8px}
+    .portal-entry-row{
+      display:grid;grid-template-columns:minmax(0,1.45fr) minmax(365px,.85fr);
+      gap:12px;align-items:stretch;margin-bottom:12px
+    }
+    .analytics-feature{
+      position:relative;overflow:hidden;border:1px solid rgba(125,211,252,.30);border-radius:var(--radius);
+      background:#071527;box-shadow:var(--shadow);aspect-ratio:3/1;min-height:0
+    }
+    .analytics-feature img{width:100%;height:100%;object-fit:cover;display:block}
+    .analytics-feature::after{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      box-shadow:inset 0 0 0 1px rgba(125,211,252,.08)
+    }
+    .feature-actions{
+      position:absolute;top:11px;right:11px;display:flex;gap:7px;z-index:3
+    }
+    .feature-link{
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;
+      border:1px solid rgba(125,211,252,.38);border-radius:10px;padding:7px 10px;
+      background:rgba(7,18,32,.88);backdrop-filter:blur(8px);color:#eaf8ff;
+      font-size:11px;font-weight:820;box-shadow:0 5px 18px rgba(0,0,0,.28);
+      transition:background .15s ease,border-color .15s ease,transform .08s ease
+    }
+    .feature-link:hover{background:rgba(22,52,76,.94);border-color:rgba(125,211,252,.68)}
+    .feature-link:active{transform:translateY(1px)}
+    .feature-link.course{border-color:rgba(251,191,36,.38);color:#fde9a8}
+    .category-panel{
+      margin:0;padding:11px 12px;display:flex;flex-direction:column;justify-content:center
+    }
+    .category-label{display:block;font-size:11px;color:var(--muted);margin:0 0 6px 2px}
+    .category-buttons{display:flex;flex-wrap:wrap;gap:6px}
     .category-btn{
       border:1px solid var(--line);background:rgba(255,255,255,.055);color:rgba(255,255,255,.82);
-      border-radius:12px;padding:9px 12px;font-weight:760;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .08s ease
+      border-radius:10px;padding:7px 9px;font-size:11.5px;font-weight:760;cursor:pointer;
+      transition:background .15s ease,border-color .15s ease,transform .08s ease
+    }
+    @media(max-width:900px){
+      .portal-entry-row{grid-template-columns:1fr}
+      .analytics-feature{aspect-ratio:3/1}
+      .category-panel{padding:10px 12px}
+    }
+    @media(max-width:580px){
+      .feature-actions{top:auto;right:8px;bottom:8px;left:8px;justify-content:flex-end}
+      .feature-link{padding:6px 8px;font-size:10px}
     }
     .category-btn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24)}
     .category-btn:active{transform:translateY(1px)}
@@ -150,10 +188,20 @@
       </div>
     </header>
 
-    <nav class="panel category-panel" aria-label="Werkzeugbereiche">
-      <span class="category-label">Bereiche</span>
-      <div class="category-buttons" id="categoryButtons"></div>
-    </nav>
+    <section class="portal-entry-row" aria-label="Leitprojekt und Werkzeugbereiche">
+      <div class="analytics-feature">
+        <img src="assets/featured/analytiklabor_spotlight.webp" alt="Digitales Analytiklabor: Unbekannte Probe – Trennen – Analysieren – Beweiskette" />
+        <div class="feature-actions">
+          <a class="feature-link" href="https://ekerzendorfer.github.io/CHEMIE_ANALYTIK_HUB/" target="_blank" rel="noopener">⚗️ Labor öffnen</a>
+          <a class="feature-link course" href="https://ekerzendorfer.github.io/CHEMIE-MIT-KI-ONLINEKURS/analytik/digitales-analytiklabor/" target="_blank" rel="noopener">📘 Konzept</a>
+        </div>
+      </div>
+
+      <nav class="panel category-panel" aria-label="Werkzeugbereiche">
+        <span class="category-label">Bereiche</span>
+        <div class="category-buttons" id="categoryButtons"></div>
+      </nav>
+    </section>
 
     <section class="panel" aria-label="Werkzeuge filtern">
       <div class="controls">
@@ -186,7 +234,7 @@
       <div>Erstellt von <strong>Mag. Erich Kerzendorfer</strong> mit Unterstützung von <strong>ChatGPT</strong></div>
       <div class="footer-right">
         <a class="footer-link" href="editor_tools.html" title="Werkzeugdaten bearbeiten">JSON-Editor</a>
-        <span>Version <span class="kbd">v1.3.0</span> · <span class="kbd">2026-08-03</span></span>
+        <span>Version <span class="kbd">v1.4.0</span> · <span class="kbd">2026-10-13</span></span>
       </div>
     </footer>
   </div>
