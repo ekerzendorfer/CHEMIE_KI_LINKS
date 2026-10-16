@@ -1,6 +1,6 @@
-# CHEMIE_KI_LINKS – Version 1.4.0
+# CHEMIE_KI_LINKS – Version 1.5.0
 
-Stand: 13. Oktober 2026
+Stand: 16. Oktober 2026
 
 ## Enthaltene Ersatzdateien
 
@@ -15,6 +15,41 @@ Stand: 13. Oktober 2026
 3. Im Ordner `data` die bestehende `tools.json` ersetzen.
 4. Die vorhandenen Thumbnail-Dateien unter `assets/thumbs/` unverändert lassen.
 5. Änderungen committen und GitHub Pages anschließend mit `Strg + F5` neu laden.
+
+## Neu in Version 1.5.0
+
+### Neue Werkzeugkacheln
+
+Vier Anwendungen wurden in das Applikationsportal aufgenommen:
+
+- **SÄUREN-LAB** – Best-Practice-Lernweg zu Säuren in Lebensmitteln
+- **KINETIK-LAB** – Best-Practice-Forschungssequenz zur photometrischen Reaktionskinetik
+- **GC-LAB** – virtueller Gaschromatograph mit Methodenentwicklung und Referenzstandards
+- **STRUKTUR-LAB** – Strukturaufklärung mit M, MS, IR und ¹H-NMR
+
+Die Reihenfolge im Bereich „ALLE“ wurde didaktisch gruppiert:
+
+- TITRATIONSTOOL → SÄUREN-LAB
+- VIRTUELLES PHOTOMETER → KINETIK-LAB → GC-LAB → STRUKTUR-LAB
+
+**GC-LAB** und **STRUKTUR-LAB** sind als `NEU & AKTUELL` gekennzeichnet.
+
+### Doppelte Bereichszuordnung für Best-Practice-Labore
+
+KINETIK-LAB und SÄUREN-LAB gehören primär zu **Virtuelle Labore & Messdaten**, werden aber zusätzlich dem Bereich **Grundlagen & Üben** zugeordnet.
+
+Technisch wird die zweite Bereichszuordnung über einen exakten Kategorienamen in `tags` realisiert. Die Portalseite:
+
+- zeigt beide Bereichs-Badges auf der Kachel,
+- findet die Anwendungen über beide Bereichsfilter,
+- verwendet weiterhin das bestehende JSON-Schema und den bestehenden Editor.
+
+### Neue Thumbnails
+
+- `assets/thumbs/kch_saeuren_lab.webp`
+- `assets/thumbs/kch_kinetik_lab.webp`
+- `assets/thumbs/kch_gc_lab.webp`
+- `assets/thumbs/kch_struktur_lab.webp`
 
 ## Neu in Version 1.4.0
 
