@@ -154,7 +154,10 @@
     .card-body{padding:13px 13px 11px;display:flex;flex-direction:column;gap:9px;flex:1}
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
     .card h2{font-size:16px;line-height:1.25;letter-spacing:.01em;margin:0}
+    .card-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px;max-width:66%}
     .badge{font-size:11px;padding:4px 8px;color:rgba(255,255,255,.78);white-space:nowrap}
+    .badge.secondary-category{color:rgba(255,230,150,.96);border-color:rgba(251,191,36,.30);background:rgba(251,191,36,.07)}
+    @media(max-width:420px){.card-head{flex-direction:column}.card-badges{max-width:100%;justify-content:flex-start}}
     .desc{margin:0;color:var(--muted);font-size:13px}
     .labels{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
     .level{font-size:11px;padding:4px 8px;color:rgba(167,243,208,.94);border-color:rgba(167,243,208,.24);background:rgba(167,243,208,.08)}
@@ -234,7 +237,7 @@
       <div>Erstellt von <strong>Mag. Erich Kerzendorfer</strong> mit Unterstützung von <strong>ChatGPT</strong></div>
       <div class="footer-right">
         <a class="footer-link" href="editor_tools.html" title="Werkzeugdaten bearbeiten">JSON-Editor</a>
-        <span>Version <span class="kbd">v1.4.0</span> · <span class="kbd">2026-10-13</span></span>
+        <span>Version <span class="kbd">v1.5.0</span> · <span class="kbd">2026-10-16</span></span>
       </div>
     </footer>
   </div>
@@ -341,7 +344,8 @@
   function filteredTools() {
     const filtered = TOOLS.filter((item) => {
       if (state.category === "featured" && item.featured !== true) return false;
-      if (state.category !== "all" && state.category !== "featured" && item.category !== state.category) return false;
+      const categoryMatches = item.category === state.category || (item.tags || []).includes(state.category);
+      if (state.category !== "all" && state.category !== "featured" && !categoryMatches) return false;
       if (!matchesLevel(item, state.level)) return false;
       return matchesQuery(item, state.q);
     });
@@ -369,7 +373,16 @@
     const description = escapeHtml(item.desc || "");
     const category = escapeHtml(item.category || "Tool");
     const level = escapeHtml((item.level || "").replace("SEK1/SEK2", "SEK I–II").replace("SEK1", "SEK I").replace("SEK2", "SEK II"));
-    const tags = (item.tags || []).slice(0, 2).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+    const knownCategories = ["Grundlagen & Üben","Virtuelle Labore & Messdaten","Moleküle & Struktur","Biochemie & Proteine","Begleitung & Material"];
+    const secondaryCategories = (item.tags || []).filter((tag) => knownCategories.includes(tag) && tag !== item.category);
+    const categoryBadges = [
+      `<span class="badge">${category}</span>`,
+      ...secondaryCategories.map((tag) => `<span class="badge secondary-category">${escapeHtml(tag)}</span>`)
+    ].join("");
+    const tags = (item.tags || [])
+      .filter((tag) => !knownCategories.includes(tag))
+      .slice(0, 2)
+      .map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
     const thumbnail = item.thumb
       ? `<img src="${escapeAttr(item.thumb)}" alt="Vorschaubild zu ${title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
          <div class="fallback" style="display:none"><span class="fallback-icon">⚗️</span><span class="fallback-title">${title}</span></div>`
@@ -385,7 +398,7 @@
       <div class="card-body">
         <div class="card-head">
           <h2>${title}</h2>
-          <span class="badge">${category}</span>
+          <div class="card-badges">${categoryBadges}</div>
         </div>
         <p class="desc">${description}</p>
         <div class="labels">
