@@ -16,8 +16,8 @@
       "CSV"
     ],
     "featured": true,
-    "updated": "2026-08-03",
-    "thumb": "assets/thumbs/kch_daten_lab.webp"
+    "updated": "2026-10-16",
+    "thumb": "assets/thumbs/kch_messwert_lab.webp"
   },
   {
     "id": "kch_titrationstool",
@@ -43,7 +43,7 @@
     "id": "kch_saeuren_lab",
     "title": "SÄUREN-LAB",
     "org": "Erich Kerzendorfer",
-    "url": "https://ekerzendorfer.github.io/SAEUREN_LAB/?source=chemie-ki-links",
+    "url": "https://ekerzendorfer.github.io/SAEUREN_LAB/index.html?source=chemie-ki-links-v151",
     "repo": "https://github.com/ekerzendorfer/SAEUREN_LAB",
     "type": "Tool",
     "category": "Virtuelle Labore & Messdaten",
@@ -83,7 +83,7 @@
     "id": "kch_kinetik_lab",
     "title": "KINETIK-LAB",
     "org": "Erich Kerzendorfer",
-    "url": "https://ekerzendorfer.github.io/KINETIK_LAB/?source=chemie-ki-links",
+    "url": "https://ekerzendorfer.github.io/KINETIK_LAB/index.html?source=chemie-ki-links-v151",
     "repo": "https://github.com/ekerzendorfer/KINETIK_LAB",
     "type": "Tool",
     "category": "Virtuelle Labore & Messdaten",
