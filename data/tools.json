@@ -35,7 +35,7 @@
       "Säure-Base",
       "Simulation"
     ],
-    "thumb": "assets/thumbs/kch_titrationstool.webp?v=20261017b",
+    "thumb": "assets/thumbs/kch_titrationstool.webp?v=20261017c",
     "featured": true,
     "updated": "2026-08-02"
   },
@@ -55,7 +55,7 @@
       "Säure-Base",
       "Best Practice"
     ],
-    "thumb": "assets/thumbs/kch_saeuren_lab.webp?v=20261017b",
+    "thumb": "assets/thumbs/kch_saeuren_lab.webp?v=20261017c",
     "featured": false,
     "updated": "2026-10-16"
   },
@@ -77,7 +77,7 @@
     ],
     "featured": true,
     "updated": "2026-07-31",
-    "thumb": "assets/thumbs/kch_spektral_lab.webp?v=20261017b"
+    "thumb": "assets/thumbs/kch_spektral_lab.webp?v=20261017c"
   },
   {
     "id": "kch_kinetik_lab",
@@ -95,7 +95,7 @@
       "Kinetik",
       "Best Practice"
     ],
-    "thumb": "assets/thumbs/kch_kinetik_lab.webp?v=20261017b",
+    "thumb": "assets/thumbs/kch_kinetik_lab.webp?v=20261017c",
     "featured": false,
     "updated": "2026-10-16"
   },
@@ -157,7 +157,7 @@
     ],
     "featured": true,
     "updated": "2026-07-28",
-    "thumb": "assets/thumbs/kch_ki_strukturmodellvergleich.webp?v=20261017b"
+    "thumb": "assets/thumbs/kch_ki_strukturmodellvergleich.webp?v=20261017c"
   },
   {
     "id": "kch_destillationslabor",
@@ -177,7 +177,7 @@
     ],
     "featured": true,
     "updated": "2026-05-28",
-    "thumb": "assets/thumbs/kch_destillationslabor.webp?v=20261017b"
+    "thumb": "assets/thumbs/kch_destillationslabor.webp?v=20261017c"
   },
   {
     "id": "kch_mol_lab_didactic",
@@ -197,7 +197,7 @@
     ],
     "featured": true,
     "updated": "2026-07-28",
-    "thumb": "assets/thumbs/kch_mol_lab_didactic.webp?v=20261017b"
+    "thumb": "assets/thumbs/kch_mol_lab_didactic.webp?v=20261017c"
   },
   {
     "id": "kch_mollab_pro",
