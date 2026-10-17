@@ -17,7 +17,7 @@
     ],
     "featured": true,
     "updated": "2026-10-16",
-    "thumb": "assets/thumbs/kch_messwert_lab_v2.webp"
+    "thumb": "assets/thumbs/kch_messwert_lab.webp"
   },
   {
     "id": "kch_titrationstool",
@@ -43,7 +43,7 @@
     "id": "kch_saeuren_lab",
     "title": "SÄUREN-LAB",
     "org": "Erich Kerzendorfer",
-    "url": "https://ekerzendorfer.github.io/SAEUREN_LAB/index.html?source=chemie-ki-links-v155",
+    "url": "https://ekerzendorfer.github.io/SAEUREN_LAB/",
     "repo": "https://github.com/ekerzendorfer/SAEUREN_LAB",
     "type": "Tool",
     "category": "Virtuelle Labore & Messdaten",
@@ -55,7 +55,7 @@
       "Säure-Base",
       "Best Practice"
     ],
-    "thumb": "assets/thumbs/kch_saeuren_lab.webp?v=20261017c",
+    "thumb": "assets/thumbs/kch_saeuren_lab.webp",
     "featured": false,
     "updated": "2026-10-16"
   },
@@ -83,7 +83,7 @@
     "id": "kch_kinetik_lab",
     "title": "KINETIK-LAB",
     "org": "Erich Kerzendorfer",
-    "url": "https://ekerzendorfer.github.io/KINETIK_LAB/index.html?source=chemie-ki-links-v155",
+    "url": "https://ekerzendorfer.github.io/KINETIK_LAB/",
     "repo": "https://github.com/ekerzendorfer/KINETIK_LAB",
     "type": "Tool",
     "category": "Virtuelle Labore & Messdaten",
@@ -95,7 +95,7 @@
       "Kinetik",
       "Best Practice"
     ],
-    "thumb": "assets/thumbs/kch_kinetik_lab.webp?v=20261017c",
+    "thumb": "assets/thumbs/kch_kinetik_lab.webp",
     "featured": false,
     "updated": "2026-10-16"
   },
