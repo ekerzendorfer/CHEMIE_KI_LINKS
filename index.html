@@ -145,11 +145,23 @@
     .fallback{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;text-align:center;padding:18px;color:rgba(255,255,255,.74);background:radial-gradient(500px 220px at 10% 10%,rgba(125,211,252,.20),transparent 60%),radial-gradient(420px 220px at 90% 0%,rgba(167,243,208,.14),transparent 60%),rgba(0,0,0,.22)}
     .fallback-icon{font-size:30px;line-height:1}
     .fallback-title{font-weight:850;letter-spacing:.04em;font-size:13px}
-    .fresh-badge{
-      position:absolute;top:10px;left:10px;z-index:2;display:inline-flex;align-items:center;
-      border:1px solid rgba(251,191,36,.48);border-radius:999px;padding:5px 8px;
-      background:rgba(11,18,32,.88);color:#fde68a;font-size:10px;font-weight:850;
-      letter-spacing:.045em;box-shadow:0 5px 18px rgba(0,0,0,.24)
+    /* Zwei ältere Motive haben das Badge im Bild links eingebrannt.
+       Die linke Stelle wird nur in der Kartenansicht abgedeckt und das
+       einheitliche kleine Badge rechts eingeblendet. */
+    .thumb .legacy-fresh-cover{
+      position:absolute;z-index:2;left:4%;top:7%;width:22%;height:18%;
+      border-radius:12px;
+      background:linear-gradient(120deg,#06162d 15%,#08182e 60%,#071428);
+      box-shadow:0 0 5px 3px rgba(6,20,40,.82);
+      pointer-events:none
+    }
+    .thumb .fresh-badge-right{
+      position:absolute;top:10%;right:4%;z-index:3;
+      display:inline-flex;align-items:center;
+      border:1px solid rgba(251,191,36,.55);border-radius:999px;
+      padding:4px 8px;background:rgba(8,20,37,.90);color:#fde68a;
+      font-size:10px;font-weight:850;letter-spacing:.03em;white-space:nowrap;
+      pointer-events:none
     }
     .card-body{padding:13px 13px 11px;display:flex;flex-direction:column;gap:9px;flex:1}
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
@@ -392,10 +404,14 @@
       : "";
     const openLabel = item.type === "Kurs" ? "Kurs öffnen" : "Tool öffnen";
     const toolUrl = item.url || "#";
-    const freshBadge = item.featured === true ? '<span class="fresh-badge">NEU & AKTUELL</span>' : "";
+    const hasLegacyLeftBadge = item.featured === true &&
+      (item.id === "kch_gc_lab" || item.id === "kch_struktur_lab");
+    const relocatedBadge = hasLegacyLeftBadge
+      ? '<span class="legacy-fresh-cover" aria-hidden="true"></span><span class="fresh-badge-right">NEU & AKTUELL</span>'
+      : "";
 
     return `<article class="card">
-      <div class="thumb">${freshBadge}${thumbnail}</div>
+      <div class="thumb">${thumbnail}${relocatedBadge}</div>
       <div class="card-body">
         <div class="card-head">
           <h2>${title}</h2>
