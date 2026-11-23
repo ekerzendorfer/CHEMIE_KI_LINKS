@@ -145,27 +145,15 @@
     .fallback{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;text-align:center;padding:18px;color:rgba(255,255,255,.74);background:radial-gradient(500px 220px at 10% 10%,rgba(125,211,252,.20),transparent 60%),radial-gradient(420px 220px at 90% 0%,rgba(167,243,208,.14),transparent 60%),rgba(0,0,0,.22)}
     .fallback-icon{font-size:30px;line-height:1}
     .fallback-title{font-weight:850;letter-spacing:.04em;font-size:13px}
-    /* Zwei ältere Motive haben das Badge im Bild links eingebrannt.
-       Die linke Stelle wird nur in der Kartenansicht abgedeckt und das
-       einheitliche kleine Badge rechts eingeblendet. */
-    .thumb.relabel-legacy-thumb{display:flex;align-items:center;justify-content:center}
-    .relabel-legacy-thumb .relabel-media{
-      position:relative;width:min(100%,348px);aspect-ratio:12/5;flex-shrink:0;container-type:inline-size
-    }
-    .relabel-legacy-thumb .relabel-media img{width:100%;height:100%;object-fit:contain}
-    .thumb .legacy-fresh-cover{
-      position:absolute;z-index:2;left:4%;top:7%;width:22%;height:18%;
-      border-radius:12px;
-      background:linear-gradient(120deg,#06162d 15%,#08182e 60%,#071428);
-      pointer-events:none
-    }
-    .thumb .fresh-badge-right{
-      position:absolute;top:9%;right:1.5%;z-index:3;
-      display:inline-flex;align-items:center;
-      border:1px solid rgba(251,191,36,.55);border-radius:999px;
-      padding:1.1cqw 1.15cqw;background:rgba(8,20,37,.90);color:#fde68a;
-      font-size:8px;font-size:2.35cqw;font-weight:850;letter-spacing:0;white-space:nowrap;
-      pointer-events:none
+    /* Dynamische Kennzeichnung: nur per featured in data/tools.json. */
+    .card-title-group{display:flex;align-items:center;flex-wrap:wrap;gap:7px;min-width:0;flex:1 1 auto}
+    .card-title-group h2{min-width:0;overflow-wrap:break-word}
+    .featured-marker{
+      display:inline-flex;align-items:center;flex:0 0 auto;
+      padding:3px 7px;border:1px solid rgba(251,191,36,.48);
+      border-radius:999px;background:rgba(251,191,36,.10);
+      color:#fde68a;font-size:10px;line-height:1.2;
+      font-weight:800;letter-spacing:.02em;white-space:nowrap
     }
     .card-body{padding:13px 13px 11px;display:flex;flex-direction:column;gap:9px;flex:1}
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
@@ -408,20 +396,15 @@
       : "";
     const openLabel = item.type === "Kurs" ? "Kurs öffnen" : "Tool öffnen";
     const toolUrl = item.url || "#";
-    const hasLegacyLeftBadge = item.featured === true &&
-      (item.id === "kch_gc_lab" || item.id === "kch_struktur_lab");
-    const relocatedBadge = hasLegacyLeftBadge
-      ? '<span class="legacy-fresh-cover" aria-hidden="true"></span><span class="fresh-badge-right">NEU & AKTUELL</span>'
+    const featuredMarker = item.featured === true
+      ? '<span class="featured-marker">NEU &amp; AKTUELL</span>'
       : "";
-    const thumbContent = hasLegacyLeftBadge
-      ? `<div class="relabel-media">${thumbnail}${relocatedBadge}</div>`
-      : thumbnail;
 
     return `<article class="card">
-      <div class="thumb${hasLegacyLeftBadge ? " relabel-legacy-thumb" : ""}">${thumbContent}</div>
+      <div class="thumb">${thumbnail}</div>
       <div class="card-body">
         <div class="card-head">
-          <h2>${title}</h2>
+          <div class="card-title-group"><h2>${title}</h2>${featuredMarker}</div>
           <div class="card-badges">${categoryBadges}</div>
         </div>
         <p class="desc">${description}</p>
